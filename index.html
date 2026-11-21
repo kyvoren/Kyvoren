@@ -15,11 +15,7 @@
   --line:#292929;
 }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 html { scroll-behavior:smooth; }
 
@@ -30,7 +26,7 @@ body {
 }
 
 button,a { font:inherit; }
-a { color:inherit;text-decoration:none; }
+a { color:inherit; text-decoration:none; }
 
 /* ABERTURA */
 
@@ -43,22 +39,14 @@ a { color:inherit;text-decoration:none; }
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  animation:exit 1s ease 5s forwards;
+  animation:exit 1s ease 6s forwards;
 }
 
-.intro-symbol {
-  font-size:90px;
-  font-weight:200;
-  color:#d5d5d5;
+.intro-logo {
+  width:min(340px,80vw);
+  height:auto;
+  object-fit:contain;
   animation:appear 1.5s ease;
-  text-shadow:0 0 25px #888;
-}
-
-.intro-name {
-  font-size:30px;
-  letter-spacing:12px;
-  margin-top:12px;
-  animation:appear 2s ease;
 }
 
 .intro-message {
@@ -77,25 +65,27 @@ a { color:inherit;text-decoration:none; }
   border:1px solid #444;
   padding:10px 18px;
   border-radius:30px;
+  cursor:pointer;
 }
 
 @keyframes appear {
-  from {opacity:0;transform:translateY(15px)}
-  to {opacity:1;transform:translateY(0)}
+  from { opacity:0; transform:translateY(15px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
 @keyframes exit {
-  to {opacity:0;visibility:hidden;pointer-events:none}
+  to { opacity:0; visibility:hidden; pointer-events:none; }
 }
 
 /* CABEÇALHO */
 
 header {
-  height:76px;
-  padding:0 7%;
+  min-height:76px;
+  padding:12px 7%;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:20px;
   border-bottom:1px solid var(--line);
   background:#080808;
   position:sticky;
@@ -104,12 +94,15 @@ header {
 }
 
 .logo {
-  font-size:25px;
-  font-weight:800;
-  letter-spacing:4px;
+  display:flex;
+  align-items:center;
 }
 
-.logo span { color:var(--silver); }
+.header-logo {
+  width:155px;
+  height:auto;
+  display:block;
+}
 
 nav {
   display:flex;
@@ -133,6 +126,7 @@ nav a:hover { color:white; }
   color:white;
   padding:10px 14px;
   border-radius:5px;
+  cursor:pointer;
 }
 
 /* INÍCIO */
@@ -145,8 +139,9 @@ nav a:hover { color:white; }
   justify-content:center;
   text-align:center;
   padding:70px 20px;
-  background:
-  radial-gradient(ellipse at center,#292929 0%,#101010 35%,#050505 75%);
+  background:radial-gradient(
+    ellipse at center,#292929 0%,#101010 35%,#050505 75%
+  );
 }
 
 .eyebrow {
@@ -385,6 +380,8 @@ section {
   background:none;
   color:white;
   font-size:25px;
+  border:0;
+  cursor:pointer;
 }
 
 .cart-item {
@@ -430,18 +427,19 @@ footer {
 }
 
 .footer-logo {
-  color:#ddd;
-  font-size:23px;
-  letter-spacing:5px;
-  margin-bottom:15px;
+  width:180px;
+  max-width:65vw;
+  height:auto;
+  display:block;
+  margin:0 auto 15px;
 }
 
 /* CELULAR */
 
 @media(max-width:700px) {
-  header { padding:0 18px; }
+  header { padding:12px 18px; }
   nav { display:none; }
-  .logo { font-size:21px; }
+  .header-logo { width:125px; }
   .hero { min-height:500px; }
   section { padding:55px 20px; }
   .products { grid-template-columns:1fr; }
@@ -454,16 +452,29 @@ footer {
 <body>
 
 <!-- ABERTURA -->
+
 <div class="intro" id="intro">
-  <div class="intro-symbol">K◇</div>
-  <div class="intro-name">KYVOREN</div>
-  <p class="intro-message">Olá, seja bem-vindo à Kyvoren.</p>
+  <img
+    src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
+    class="intro-logo"
+    alt="KYVOREN"
+  >
+  <p class="intro-message">
+    Olá, seja bem-vindo à Kyvoren.
+  </p>
   <button class="skip" onclick="skipIntro()">Pular animação</button>
 </div>
 
 <!-- CABEÇALHO -->
+
 <header>
-  <a href="#inicio" class="logo">K<span>YVOREN</span></a>
+  <a href="#inicio" class="logo">
+    <img
+      src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
+      class="header-logo"
+      alt="KYVOREN"
+    >
+  </a>
 
   <nav>
     <a href="#inicio">Início</a>
@@ -480,7 +491,6 @@ footer {
   </div>
 </header>
 
-<!-- INÍCIO -->
 <main>
 
 <section class="hero" id="inicio">
@@ -499,7 +509,6 @@ footer {
   </a>
 </section>
 
-<!-- SOBRE -->
 <section id="sobre">
   <div class="about">
     <div class="section-label">01 — NOSSA MARCA</div>
@@ -514,7 +523,6 @@ footer {
   </div>
 </section>
 
-<!-- CATÁLOGO -->
 <section id="catalogo">
   <div class="section-label">02 — EXPLORE</div>
   <h2 class="section-title">Nosso catálogo</h2>
@@ -573,7 +581,6 @@ footer {
   </div>
 </section>
 
-<!-- OFERTAS -->
 <section id="ofertas">
   <div class="section-label">03 — NOVIDADES</div>
   <h2 class="section-title">Ofertas e novidades</h2>
@@ -583,7 +590,6 @@ footer {
   </p>
 </section>
 
-<!-- COMO FUNCIONA -->
 <section>
   <div class="section-label">04 — EXPERIÊNCIA</div>
   <h2 class="section-title">Como funciona</h2>
@@ -612,7 +618,6 @@ footer {
   </div>
 </section>
 
-<!-- AVALIAÇÕES -->
 <section>
   <div class="section-label">05 — COMUNIDADE</div>
   <h2 class="section-title">Experiências reais</h2>
@@ -622,7 +627,6 @@ footer {
   </p>
 </section>
 
-<!-- SUPORTE -->
 <section class="support" id="suporte">
   <div class="section-label">06 — ATENDIMENTO</div>
   <h2 class="section-title">Estamos aqui para ajudar.</h2>
@@ -640,15 +644,17 @@ footer {
 
 </main>
 
-<!-- RODAPÉ -->
 <footer>
-  <div class="footer-logo">KYVOREN</div>
+  <img
+    src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
+    class="footer-logo"
+    alt="KYVOREN"
+  >
   PRETO. PRATA. IDENTIDADE.
   <p>© 2026 KYVOREN. Todos os direitos reservados.</p>
   <p>Produtos • Tecnologia • Serviços</p>
 </footer>
 
-<!-- CARRINHO -->
 <aside class="cart-panel" id="cart">
   <div class="cart-top">
     <h2>Seu carrinho</h2>
@@ -704,7 +710,7 @@ function updateCart() {
       <span>${item.name}<br>
       <small>${item.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</small></span>
       <button onclick="removeCart(${index})"
-      style="background:none;color:#ccc">Remover</button>
+      style="background:none;color:#ccc;border:0;cursor:pointer">Remover</button>
     </div>
   `).join('');
 }
