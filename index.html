@@ -1,748 +1,1002 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<title>KYVOREN — Uma nova experiência</title>
-
-<style>
-:root {
-  --black:#050505;
-  --silver:#C0C0C0;
-  --metal:#858585;
-  --white:#F2F2F2;
-  --line:#292929;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
-
-body {
-  background:var(--black);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-button,a { font:inherit; }
-a { color:inherit; text-decoration:none; }
-
-/* ABERTURA */
-
-.intro {
-  position:fixed;
-  inset:0;
-  background:#050505;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  animation:exit 1s ease 6s forwards;
-}
-
-.intro-logo {
-  width:min(340px,80vw);
-  height:auto;
-  object-fit:contain;
-  animation:appear 1.5s ease;
-}
-
-.intro-message {
-  color:#999;
-  margin-top:22px;
-  font-size:14px;
-  animation:appear 3s ease;
-}
-
-.skip {
-  position:absolute;
-  bottom:35px;
-  right:25px;
-  background:none;
-  color:#aaa;
-  border:1px solid #444;
-  padding:10px 18px;
-  border-radius:30px;
-  cursor:pointer;
-}
-
-@keyframes appear {
-  from { opacity:0; transform:translateY(15px); }
-  to { opacity:1; transform:translateY(0); }
-}
-
-@keyframes exit {
-  to { opacity:0; visibility:hidden; pointer-events:none; }
-}
-
-/* CABEÇALHO */
-
-header {
-  min-height:76px;
-  padding:12px 7%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  border-bottom:1px solid var(--line);
-  background:#080808;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.logo {
-  display:flex;
-  align-items:center;
-}
-
-.header-logo {
-  width:155px;
-  height:auto;
-  display:block;
-}
-
-nav {
-  display:flex;
-  align-items:center;
-  gap:27px;
-  font-size:13px;
-  color:#bbb;
-}
-
-nav a:hover { color:white; }
-
-.header-actions {
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-.header-btn {
-  background:#111;
-  border:1px solid #555;
-  color:white;
-  padding:10px 14px;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-/* INÍCIO */
-
-.hero {
-  min-height:570px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:70px 20px;
-  background:radial-gradient(
-    ellipse at center,#292929 0%,#101010 35%,#050505 75%
-  );
-}
-
-.eyebrow {
-  color:var(--silver);
-  font-size:11px;
-  letter-spacing:5px;
-  margin-bottom:25px;
-}
-
-.hero h1 {
-  font-size:clamp(42px,8vw,76px);
-  letter-spacing:5px;
-  font-weight:400;
-}
-
-.hero h1 span { color:var(--silver); }
-
-.hero p {
-  color:#aaa;
-  max-width:550px;
-  line-height:1.8;
-  margin:25px auto;
-}
-
-.primary-btn {
-  background:linear-gradient(120deg,#e0e0e0,#858585);
-  color:#080808;
-  padding:15px 28px;
-  border:0;
-  border-radius:4px;
-  font-weight:bold;
-  display:inline-block;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.primary-btn:hover { transform:translateY(-3px); }
-
-/* SEÇÕES */
-
-section {
-  padding:75px 8%;
-  border-bottom:1px solid #202020;
-}
-
-.section-label {
-  color:#999;
-  font-size:11px;
-  letter-spacing:4px;
-  margin-bottom:13px;
-}
-
-.section-title {
-  font-size:30px;
-  font-weight:400;
-  margin-bottom:15px;
-}
-
-.section-description {
-  color:#999;
-  line-height:1.8;
-  margin-bottom:35px;
-}
-
-/* SOBRE */
-
-.about {
-  text-align:center;
-  max-width:850px;
-  margin:auto;
-}
-
-.about p {
-  color:#aaa;
-  line-height:2;
-}
-
-/* CATEGORIAS */
-
-.categories {
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:35px;
-}
-
-.category-btn {
-  background:#111;
-  color:#aaa;
-  border:1px solid #444;
-  border-radius:30px;
-  padding:11px 19px;
-  cursor:pointer;
-}
-
-.category-btn.active,
-.category-btn:hover {
-  color:#fff;
-  border-color:#ddd;
-}
-
-/* PRODUTOS */
-
-.products {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.product {
-  background:#101010;
-  border:1px solid #303030;
-  border-radius:7px;
-  overflow:hidden;
-  transition:.3s;
-}
-
-.product:hover {
-  transform:translateY(-5px);
-  border-color:#999;
-}
-
-.product-image {
-  height:180px;
-  background:linear-gradient(145deg,#292929,#080808);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  color:#c0c0c0;
-}
-
-.product-info { padding:22px; }
-
-.product-type {
-  font-size:10px;
-  letter-spacing:2px;
-  color:#999;
-  margin-bottom:12px;
-}
-
-.product h3 { margin-bottom:10px; }
-
-.product p {
-  color:#999;
-  font-size:13px;
-  line-height:1.7;
-  min-height:44px;
-}
-
-.price {
-  color:#ddd;
-  font-size:20px;
-  margin:20px 0;
-}
-
-.add-btn {
-  width:100%;
-  padding:12px;
-  color:#080808;
-  background:#c0c0c0;
-  border:0;
-  border-radius:4px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* COMO FUNCIONA */
-
-.steps {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.step {
-  border:1px solid #333;
-  padding:25px;
-  border-radius:5px;
-}
-
-.step strong {
-  font-size:28px;
-  color:#aaa;
-}
-
-.step h3 { margin:15px 0; }
-
-.step p {
-  color:#999;
-  line-height:1.7;
-  font-size:14px;
-}
-
-/* SUPORTE */
-
-.support {
-  text-align:center;
-  background:#101010;
-}
-
-.support p {
-  color:#999;
-  line-height:1.8;
-  margin:20px auto;
-  max-width:500px;
-}
-
-/* CARRINHO */
-
-.cart-panel {
-  position:fixed;
-  right:0;
-  top:0;
-  width:min(390px,100%);
-  height:100%;
-  background:#111;
-  z-index:30;
-  padding:25px;
-  border-left:1px solid #555;
-  transform:translateX(100%);
-  transition:.3s;
-  overflow-y:auto;
-}
-
-.cart-panel.open { transform:translateX(0); }
-
-.cart-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.close-cart {
-  background:none;
-  color:white;
-  font-size:25px;
-  border:0;
-  cursor:pointer;
-}
-
-.cart-item {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  border-bottom:1px solid #333;
-  padding:15px 0;
-  color:#ccc;
-}
-
-.cart-total {
-  margin-top:25px;
-  font-size:20px;
-}
-
-.checkout-btn {
-  width:100%;
-  margin-top:20px;
-  padding:15px;
-  background:#c0c0c0;
-  color:black;
-  border:0;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.cart-note {
-  font-size:12px;
-  color:#888;
-  line-height:1.6;
-  margin-top:15px;
-}
-
-/* RODAPÉ */
-
-footer {
-  text-align:center;
-  padding:45px 20px;
-  color:#888;
-  font-size:12px;
-  line-height:2;
-}
-
-.footer-logo {
-  width:180px;
-  max-width:65vw;
-  height:auto;
-  display:block;
-  margin:0 auto 15px;
-}
-
-/* CELULAR */
-
-@media(max-width:700px) {
-  header { padding:12px 18px; }
-  nav { display:none; }
-  .header-logo { width:125px; }
-  .hero { min-height:500px; }
-  section { padding:55px 20px; }
-  .products { grid-template-columns:1fr; }
-  .steps { grid-template-columns:1fr; }
-  .product-image { height:160px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="KYVOREN — Uma nova experiência em produtos digitais, físicos e serviços.">
+  <title>KYVOREN — Uma nova experiência</title>
+
+  <style>
+    :root {
+      --black: #050505;
+      --silver: #C0C0C0;
+      --gray: #858585;
+      --white: #F2F2F2;
+      --line: rgba(192,192,192,.19);
+      --panel: #101010;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro img {
+      width: min(250px, 65vw);
+      animation: appear 1.5s ease both;
+    }
+
+    .intro p {
+      color: var(--silver);
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .skip {
+      position: absolute;
+      bottom: 35px;
+      right: 25px;
+      color: var(--gray);
+      background: none;
+      border: 1px solid var(--line);
+      padding: 9px 17px;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      min-height: 82px;
+      padding: 12px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,5,5,.96);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(15px);
+    }
+
+    .header-logo { width: 105px; display: block; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    nav a {
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: 1px;
+      transition: color .3s;
+    }
+
+    nav a:hover { color: var(--white); }
+
+    .cart-button {
+      border: 1px solid var(--silver);
+      background: transparent;
+      color: var(--white);
+      padding: 10px 15px;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .cart-button span { color: var(--silver); }
+
+    .hero {
+      min-height: 690px;
+      padding: 100px 8%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 75% 48%, rgba(192,192,192,.11), transparent 35%),
+        linear-gradient(115deg, #050505 40%, #111 100%);
+    }
+
+    .hero::after {
+      content: "K";
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-55%);
+      font-size: clamp(300px, 48vw, 650px);
+      font-family: Georgia, serif;
+      font-weight: 400;
+      color: rgba(192,192,192,.035);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--silver);
+      font-size: 10px;
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 94px);
+      line-height: .98;
+      font-weight: 400;
+      letter-spacing: -4px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span { color: var(--silver); }
+
+    .hero-description {
+      color: #aaa;
+      max-width: 480px;
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 35px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .button-primary, .button-outline {
+      display: inline-block;
+      padding: 15px 23px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      transition: .3s;
+      text-align: center;
+    }
+
+    .button-primary {
+      background: var(--silver);
+      color: #050505;
+      border: 1px solid var(--silver);
+    }
+
+    .button-primary:hover {
+      background: white;
+      border-color: white;
+    }
+
+    .button-outline {
+      color: var(--white);
+      border: 1px solid #555;
+    }
+
+    .button-outline:hover { border-color: var(--silver); }
+
+    .hero-categories {
+      display: flex;
+      gap: 25px;
+      margin-top: 65px;
+      flex-wrap: wrap;
+    }
+
+    .hero-categories span {
+      color: #777;
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+
+    .hero-categories span::before {
+      content: "—";
+      color: var(--silver);
+      margin-right: 9px;
+    }
+
+    section { padding: 100px 8%; }
+
+    .section-label {
+      color: var(--gray);
+      letter-spacing: 3px;
+      font-size: 10px;
+      margin-bottom: 13px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 49px);
+      font-weight: 400;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      color: #999;
+      max-width: 650px;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .about {
+      background: #0a0a0a;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-mark {
+      min-height: 260px;
+      border: 1px solid var(--line);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #202020, #090909 70%);
+      color: var(--silver);
+      font-family: Georgia, serif;
+      font-size: 150px;
+    }
+
+    .category-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 45px;
+    }
+
+    .category-card {
+      min-height: 160px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #151515, #080808);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: border-color .3s, transform .3s;
+    }
+
+    .category-card:hover {
+      border-color: #888;
+      transform: translateY(-4px);
+    }
+
+    .category-card small {
+      color: var(--gray);
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 8px;
+    }
+
+    .category-card h3 {
+      font-size: 19px;
+      font-weight: 400;
+    }
+
+    .catalog { background: #050505; }
+
+    .catalog-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 35px 0;
+    }
+
+    .filter-button {
+      color: #999;
+      border: 1px solid #333;
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      color: #050505;
+      background: var(--silver);
+      border-color: var(--silver);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      border: 1px solid var(--line);
+      background: #0d0d0d;
+      transition: transform .3s, border-color .3s;
+      overflow: hidden;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      border-color: #777;
+    }
+
+    .product-image {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, #292929 0%, #151515 40%, #090909 78%);
+      border-bottom: 1px solid var(--line);
+      color: #777;
+      font-size: 12px;
+      letter-spacing: 3px;
+    }
+
+    .product-info { padding: 24px; }
+
+    .product-type {
+      color: var(--gray);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .product h3 {
+      font-weight: 400;
+      font-size: 20px;
+      margin: 9px 0;
+    }
+
+    .product p {
+      color: #888;
+      font-size: 12px;
+      min-height: 40px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .price {
+      color: var(--silver);
+      font-size: 18px;
+    }
+
+    .add-button {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid #666;
+      padding: 10px 13px;
+      font-size: 9px;
+      letter-spacing: 1px;
+    }
+
+    .add-button:hover {
+      background: var(--silver);
+      color: #000;
+    }
+
+    .offers {
+      background: linear-gradient(120deg, #171717, #080808);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .offers .section-text { margin: 0 auto 28px; }
+
+    .offer-mark {
+      color: var(--silver);
+      font-size: 11px;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .step {
+      border-top: 1px solid #666;
+      padding: 25px 15px 15px 0;
+    }
+
+    .step-number {
+      color: var(--silver);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .step h3 {
+      font-size: 19px;
+      font-weight: 400;
+      margin: 15px 0 8px;
+    }
+
+    .step p { color: #888; font-size: 12px; }
+
+    .community {
+      background: #0a0a0a;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .review-placeholder {
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      padding: 28px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .support-note {
+      border: 1px solid var(--line);
+      padding: 30px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 55px 8% 25px;
+      background: #030303;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      padding-bottom: 35px;
+    }
+
+    .footer-logo { width: 115px; }
+
+    .footer-slogan {
+      color: #888;
+      letter-spacing: 3px;
+      font-size: 10px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #666;
+      font-size: 10px;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s;
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(420px, 100%);
+      height: 100%;
+      z-index: 101;
+      background: #0b0b0b;
+      border-left: 1px solid var(--line);
+      padding: 28px;
+      transform: translateX(100%);
+      transition: transform .35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-header h2 { font-weight: 400; }
+
+    .close-cart {
+      color: white;
+      background: none;
+      border: none;
+      font-size: 25px;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .remove-button {
+      color: #aaa;
+      background: none;
+      border: none;
+      text-decoration: underline;
+      font-size: 11px;
+    }
+
+    .cart-total {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 17px;
+    }
+
+    .checkout-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border: 0;
+      background: var(--silver);
+      color: #000;
+      letter-spacing: 2px;
+      font-size: 11px;
+    }
+
+    .cart-notice {
+      color: #777;
+      font-size: 10px;
+      margin-top: 15px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 850px) {
+      nav { gap: 13px; }
+      nav a { font-size: 10px; }
+      .about-grid { gap: 30px; }
+    }
+
+    @media (max-width: 700px) {
+      header { min-height: 70px; padding: 10px 5%; }
+      nav { display: none; }
+      .header-logo { width: 90px; }
+      .hero { min-height: 620px; padding: 80px 7%; }
+      .hero h1 { letter-spacing: -2px; }
+      .hero::after { right: -10%; opacity: .6; }
+      section { padding: 75px 7%; }
+      .about-grid, .support-grid { grid-template-columns: 1fr; }
+      .about-mark { min-height: 190px; font-size: 110px; }
+      .category-strip, .products, .steps { grid-template-columns: 1fr; }
+      .product-image { height: 190px; }
+      .hero-categories { gap: 13px; }
+      .footer-top { align-items: flex-start; flex-direction: column; }
+      .cart-drawer { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ABERTURA -->
+  <div class="intro" id="intro">
+    <img src="F93C34FB-B3F3-4126-80B2-01B81F426474.png" alt="Logo KYVOREN">
+    <p>OLÁ, SEJA BEM-VINDO À KYVOREN.</p>
+    <button class="skip" type="button" onclick="skipIntro()">PULAR INTRODUÇÃO</button>
+  </div>
 
-<div class="intro" id="intro">
-  <img
-    src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
-    class="intro-logo"
-    alt="KYVOREN"
-  >
-  <p class="intro-message">
-    Olá, seja bem-vindo à Kyvoren.
-  </p>
-  <button class="skip" onclick="skipIntro()">Pular animação</button>
-</div>
+  <header>
+    <a href="#inicio" aria-label="KYVOREN - início">
+      <img class="header-logo" src="F93C34FB-B3F3-4126-80B2-01B81F426474.png" alt="KYVOREN">
+    </a>
 
-<!-- CABEÇALHO -->
+    <nav aria-label="Navegação principal">
+      <a href="#inicio">INÍCIO</a>
+      <a href="#sobre">SOBRE</a>
+      <a href="#catalogo">CATÁLOGO</a>
+      <a href="#ofertas">OFERTAS</a>
+      <a href="#suporte">SUPORTE</a>
+    </nav>
 
-<header>
-  <a href="#inicio" class="logo">
-    <img
-      src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
-      class="header-logo"
-      alt="KYVOREN"
-    >
-  </a>
-
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#catalogo">Catálogo</a>
-    <a href="#ofertas">Ofertas</a>
-    <a href="#suporte">Suporte</a>
-  </nav>
-
-  <div class="header-actions">
-    <button class="header-btn" onclick="openCart()">
-      Carrinho (<span id="cart-count">0</span>)
+    <button class="cart-button" type="button" onclick="openCart()">
+      CARRINHO <span id="cart-count" aria-live="polite">0</span>
     </button>
-  </div>
-</header>
+  </header>
 
-<main>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <p class="eyebrow">TECNOLOGIA • QUALIDADE • INOVAÇÃO</p>
+        <h1>O NOVO TEM <span>IDENTIDADE.</span></h1>
+        <p class="hero-description">
+          Descubra uma nova experiência. Produtos digitais, físicos e serviços
+          reunidos em um só lugar, com a identidade única da KYVOREN.
+        </p>
 
-<section class="hero" id="inicio">
-  <div class="eyebrow">TECNOLOGIA • QUALIDADE • INOVAÇÃO</div>
+        <div class="actions">
+          <a class="button-primary" href="#catalogo">EXPLORAR CATÁLOGO</a>
+          <a class="button-outline" href="#sobre">CONHECER A KYVOREN</a>
+        </div>
 
-  <h1>O NOVO TEM <span>IDENTIDADE.</span></h1>
+        <div class="hero-categories">
+          <span>DIGITAIS</span>
+          <span>FÍSICOS</span>
+          <span>SERVIÇOS</span>
+        </div>
+      </div>
+    </section>
 
-  <p>
-    Uma nova experiência em produtos digitais,
-    físicos e serviços. Descubra um universo
-    de possibilidades com a KYVOREN.
-  </p>
+    <section class="about" id="sobre">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">01 — NOSSA IDENTIDADE</p>
+          <h2 class="section-title">Mais que uma loja.<br>Uma experiência.</h2>
+          <p class="section-text">
+            A KYVOREN nasce com uma proposta: unir praticidade, qualidade e
+            inovação em uma experiência de compra moderna. Cada detalhe
+            representa nossa busca por simplicidade, confiança e identidade.
+          </p>
+        </div>
+        <div class="about-mark" aria-hidden="true">K</div>
+      </div>
+    </section>
 
-  <a href="#catalogo" class="primary-btn">
-    EXPLORAR CATÁLOGO
-  </a>
-</section>
+    <section id="categorias">
+      <p class="section-label">02 — EXPLORE</p>
+      <h2 class="section-title">Encontre o que procura.</h2>
+      <p class="section-text">
+        Diferentes possibilidades, organizadas em uma experiência simples.
+      </p>
 
-<section id="sobre">
-  <div class="about">
-    <div class="section-label">01 — NOSSA MARCA</div>
-    <h2 class="section-title">Sobre a KYVOREN</h2>
-    <p>
-      A KYVOREN nasce com uma proposta:
-      unir tecnologia, qualidade e inovação
-      em uma experiência comercial moderna.
-      Uma marca construída para conectar
-      produtos, serviços e pessoas.
+      <div class="category-strip">
+        <a class="category-card" href="#catalogo" onclick="filterProducts('digital')">
+          <small>CATEGORIA 01</small>
+          <h3>Produtos digitais</h3>
+        </a>
+        <a class="category-card" href="#catalogo" onclick="filterProducts('fisico')">
+          <small>CATEGORIA 02</small>
+          <h3>Produtos físicos</h3>
+        </a>
+        <a class="category-card" href="#catalogo" onclick="filterProducts('servico')">
+          <small>CATEGORIA 03</small>
+          <h3>Serviços</h3>
+        </a>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+      <div class="catalog-heading">
+        <div>
+          <p class="section-label">03 — CATÁLOGO</p>
+          <h2 class="section-title">Explore nossas opções.</h2>
+          <p class="section-text">
+            Conheça as categorias e descubra as possibilidades da KYVOREN.
+          </p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-button active" type="button" onclick="filterProducts('todos', this)">TODOS</button>
+        <button class="filter-button" type="button" onclick="filterProducts('digital', this)">DIGITAIS</button>
+        <button class="filter-button" type="button" onclick="filterProducts('fisico', this)">FÍSICOS</button>
+        <button class="filter-button" type="button" onclick="filterProducts('servico', this)">SERVIÇOS</button>
+      </div>
+
+      <div class="products">
+        <article class="product" data-category="digital">
+          <div class="product-image">KYVOREN DIGITAL</div>
+          <div class="product-info">
+            <span class="product-type">PRODUTO DIGITAL</span>
+            <h3>Produto Digital</h3>
+            <p>Espaço reservado para a descrição do produto.</p>
+            <div class="product-bottom">
+              <span class="price">R$ 29,90</span>
+              <button class="add-button" type="button" onclick="addCart('Produto Digital', 29.90)">ADICIONAR</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" data-category="fisico">
+          <div class="product-image">KYVOREN STORE</div>
+          <div class="product-info">
+            <span class="product-type">PRODUTO FÍSICO</span>
+            <h3>Produto Físico</h3>
+            <p>Espaço reservado para a descrição do produto.</p>
+            <div class="product-bottom">
+              <span class="price">R$ 59,90</span>
+              <button class="add-button" type="button" onclick="addCart('Produto Físico', 59.90)">ADICIONAR</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product" data-category="servico">
+          <div class="product-image">KYVOREN SERVICES</div>
+          <div class="product-info">
+            <span class="product-type">SERVIÇO</span>
+            <h3>Serviço Especializado</h3>
+            <p>Espaço reservado para a descrição do serviço.</p>
+            <div class="product-bottom">
+              <span class="price">R$ 99,90</span>
+              <button class="add-button" type="button" onclick="addCart('Serviço Especializado', 99.90)">ADICIONAR</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="offers" id="ofertas">
+      <p class="offer-mark">KYVOREN EXCLUSIVE</p>
+      <p class="section-label">04 — OPORTUNIDADES</p>
+      <h2 class="section-title">Ofertas especiais em breve.</h2>
+      <p class="section-text">
+        Estamos preparando uma área especial para apresentar futuras
+        promoções e oportunidades. Em breve, novidades por aqui.
+      </p>
+      <a href="#catalogo" class="button-outline">VER CATÁLOGO</a>
+    </section>
+
+    <section id="como-funciona">
+      <p class="section-label">05 — SIMPLICIDADE</p>
+      <h2 class="section-title">Como funciona?</h2>
+      <p class="section-text">
+        Uma experiência pensada para ser simples e organizada.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">01 / EXPLORE</span>
+          <h3>Escolha</h3>
+          <p>Conheça as opções disponíveis no catálogo.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">02 / ORGANIZE</span>
+          <h3>Adicione ao carrinho</h3>
+          <p>Reúna os itens que deseja em um só lugar.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">03 / FINALIZE</span>
+          <h3>Continue sua jornada</h3>
+          <p>As etapas de compra serão disponibilizadas após a integração dos pagamentos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="community" id="comunidade">
+      <p class="section-label">06 — COMUNIDADE</p>
+      <h2 class="section-title">A experiência KYVOREN.</h2>
+      <p class="section-text">
+        Queremos construir uma comunidade baseada em confiança e boas
+        experiências.
+      </p>
+      <div class="review-placeholder">
+        As avaliações reais dos clientes serão apresentadas aqui quando
+        houver compras concluídas e opiniões verificadas.
+      </div>
+    </section>
+
+    <section id="suporte">
+      <div class="support-grid">
+        <div>
+          <p class="section-label">07 — SUPORTE</p>
+          <h2 class="section-title">Estamos construindo algo melhor.</h2>
+          <p class="section-text">
+            Nosso espaço de suporte será preparado para ajudar com dúvidas,
+            pedidos e informações sobre os produtos.
+          </p>
+        </div>
+        <div class="support-note">
+          <strong>Central de atendimento</strong>
+          <p style="margin-top:12px">
+            O canal oficial de atendimento será divulgado assim que estiver
+            configurado.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <img class="footer-logo" src="F93C34FB-B3F3-4126-80B2-01B81F426474.png" alt="KYVOREN">
+      <p class="footer-slogan">PRETO. PRATA. IDENTIDADE.</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KYVOREN. Todos os direitos reservados.</span>
+      <span>UMA NOVA EXPERIÊNCIA.</span>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras" aria-modal="true" role="dialog">
+    <div class="cart-header">
+      <h2>Seu carrinho</h2>
+      <button class="close-cart" type="button" onclick="closeCart()" aria-label="Fechar carrinho">×</button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      <p style="color:#888;font-size:13px">Seu carrinho está vazio.</p>
+    </div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cart-total">R$ 0,00</strong>
+    </div>
+
+    <button class="checkout-button" type="button" onclick="checkout()">CONTINUAR</button>
+
+    <p class="cart-notice">
+      Demonstração inicial. O pagamento ainda não está conectado.
+      Nenhuma compra real será processada.
     </p>
-  </div>
-</section>
+  </aside>
 
-<section id="catalogo">
-  <div class="section-label">02 — EXPLORE</div>
-  <h2 class="section-title">Nosso catálogo</h2>
-  <p class="section-description">
-    Descubra as categorias da KYVOREN.
-  </p>
+  <script>
+    let cart = [];
 
-  <div class="categories">
-    <button class="category-btn active" onclick="filterProducts('todos',this)">Todos</button>
-    <button class="category-btn" onclick="filterProducts('digital',this)">Digitais</button>
-    <button class="category-btn" onclick="filterProducts('fisico',this)">Físicos</button>
-    <button class="category-btn" onclick="filterProducts('servico',this)">Serviços</button>
-  </div>
+    function skipIntro() {
+      document.getElementById('intro').classList.add('hidden');
+    }
 
-  <div class="products" id="products">
+    window.addEventListener('load', function() {
+      setTimeout(skipIntro, 6000);
+    });
 
-    <article class="product" data-category="digital">
-      <div class="product-image">◇</div>
-      <div class="product-info">
-        <div class="product-type">PRODUTO DIGITAL</div>
-        <h3>Produto Digital</h3>
-        <p>Espaço reservado para a descrição do primeiro produto.</p>
-        <div class="price">R$ 29,90</div>
-        <button class="add-btn" onclick="addCart('Produto Digital',29.90)">
-          ADICIONAR AO CARRINHO
-        </button>
-      </div>
-    </article>
+    function addCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+      openCart();
+    }
 
-    <article class="product" data-category="fisico">
-      <div class="product-image">◆</div>
-      <div class="product-info">
-        <div class="product-type">PRODUTO FÍSICO</div>
-        <h3>Produto Físico</h3>
-        <p>Espaço reservado para a descrição do produto físico.</p>
-        <div class="price">R$ 59,90</div>
-        <button class="add-btn" onclick="addCart('Produto Físico',59.90)">
-          ADICIONAR AO CARRINHO
-        </button>
-      </div>
-    </article>
+    function updateCart() {
+      const count = document.getElementById('cart-count');
+      const items = document.getElementById('cart-items');
+      const total = document.getElementById('cart-total');
 
-    <article class="product" data-category="servico">
-      <div class="product-image">K</div>
-      <div class="product-info">
-        <div class="product-type">SERVIÇO</div>
-        <h3>Serviço Especializado</h3>
-        <p>Espaço reservado para apresentar os serviços da marca.</p>
-        <div class="price">R$ 99,90</div>
-        <button class="add-btn" onclick="addCart('Serviço Especializado',99.90)">
-          ADICIONAR AO CARRINHO
-        </button>
-      </div>
-    </article>
+      count.textContent = cart.length;
 
-  </div>
-</section>
+      if (cart.length === 0) {
+        items.innerHTML = '<p style="color:#888;font-size:13px">Seu carrinho está vazio.</p>';
+      } else {
+        items.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong><br>
+              <span style="color:#aaa">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <button class="remove-button" type="button" onclick="removeCart(${index})">Remover</button>
+          </div>
+        `).join('');
+      }
 
-<section id="ofertas">
-  <div class="section-label">03 — NOVIDADES</div>
-  <h2 class="section-title">Ofertas e novidades</h2>
-  <p class="section-description">
-    Em breve, novidades e oportunidades especiais
-    estarão disponíveis na KYVOREN.
-  </p>
-</section>
+      const sum = cart.reduce((acc, item) => acc + item.price, 0);
+      total.textContent = 'R$ ' + sum.toFixed(2).replace('.', ',');
+    }
 
-<section>
-  <div class="section-label">04 — EXPERIÊNCIA</div>
-  <h2 class="section-title">Como funciona</h2>
-  <p class="section-description">
-    Uma experiência simples e organizada.
-  </p>
+    function removeCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
 
-  <div class="steps">
-    <div class="step">
-      <strong>01</strong>
-      <h3>Explore</h3>
-      <p>Conheça os produtos e serviços disponíveis.</p>
-    </div>
+    function openCart() {
+      document.getElementById('cart-drawer').classList.add('open');
+      document.getElementById('cart-overlay').classList.add('open');
+    }
 
-    <div class="step">
-      <strong>02</strong>
-      <h3>Escolha</h3>
-      <p>Adicione os itens desejados ao carrinho.</p>
-    </div>
+    function closeCart() {
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+    }
 
-    <div class="step">
-      <strong>03</strong>
-      <h3>Finalize</h3>
-      <p>Confira seu pedido e aguarde a futura integração de pagamento.</p>
-    </div>
-  </div>
-</section>
+    function checkout() {
+      alert('O checkout e os pagamentos ainda serão integrados. Esta é uma demonstração: nenhuma compra será realizada.');
+    }
 
-<section>
-  <div class="section-label">05 — COMUNIDADE</div>
-  <h2 class="section-title">Experiências reais</h2>
-  <p class="section-description">
-    As avaliações dos clientes serão exibidas
-    aqui após as primeiras compras verificadas.
-  </p>
-</section>
+    function filterProducts(category, button) {
+      document.querySelectorAll('.product').forEach(product => {
+        product.style.display =
+          category === 'todos' || product.dataset.category === category
+            ? ''
+            : 'none';
+      });
 
-<section class="support" id="suporte">
-  <div class="section-label">06 — ATENDIMENTO</div>
-  <h2 class="section-title">Estamos aqui para ajudar.</h2>
-  <p>
-    Precisa de ajuda? Nosso espaço de suporte
-    será preparado para atender você.
-  </p>
-  <a href="mailto:contato@kyvoren.com" class="primary-btn">
-    CONTATO
-  </a>
-  <p style="font-size:11px">
-    Endereço de contato provisório. Substituir pelo canal oficial.
-  </p>
-</section>
-
-</main>
-
-<footer>
-  <img
-    src="F93C34FB-B3F3-4126-80B2-01B81F426474.png"
-    class="footer-logo"
-    alt="KYVOREN"
-  >
-  PRETO. PRATA. IDENTIDADE.
-  <p>© 2026 KYVOREN. Todos os direitos reservados.</p>
-  <p>Produtos • Tecnologia • Serviços</p>
-</footer>
-
-<aside class="cart-panel" id="cart">
-  <div class="cart-top">
-    <h2>Seu carrinho</h2>
-    <button class="close-cart" onclick="closeCart()">×</button>
-  </div>
-
-  <div id="cart-items">
-    <p style="color:#888">Seu carrinho está vazio.</p>
-  </div>
-
-  <div class="cart-total">
-    Total: <strong id="cart-total">R$ 0,00</strong>
-  </div>
-
-  <button class="checkout-btn" onclick="checkout()">
-    CONTINUAR
-  </button>
-
-  <p class="cart-note">
-    Demonstração inicial. O pagamento ainda não está
-    conectado. Nenhuma compra real será processada.
-  </p>
-</aside>
-
-<script>
-let cart = [];
-
-function skipIntro() {
-  document.getElementById('intro').style.display='none';
-}
-
-function addCart(name,price) {
-  cart.push({name,price});
-  updateCart();
-  openCart();
-}
-
-function updateCart() {
-  const items=document.getElementById('cart-items');
-  const total=cart.reduce((sum,item)=>sum+item.price,0);
-
-  document.getElementById('cart-count').textContent=cart.length;
-  document.getElementById('cart-total').textContent=
-    total.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-
-  if(cart.length===0) {
-    items.innerHTML='<p style="color:#888">Seu carrinho está vazio.</p>';
-    return;
-  }
-
-  items.innerHTML=cart.map((item,index)=>`
-    <div class="cart-item">
-      <span>${item.name}<br>
-      <small>${item.price.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</small></span>
-      <button onclick="removeCart(${index})"
-      style="background:none;color:#ccc;border:0;cursor:pointer">Remover</button>
-    </div>
-  `).join('');
-}
-
-function removeCart(index) {
-  cart.splice(index,1);
-  updateCart();
-}
-
-function openCart() {
-  document.getElementById('cart').classList.add('open');
-}
-
-function closeCart() {
-  document.getElementById('cart').classList.remove('open');
-}
-
-function checkout() {
-  alert('O checkout e os pagamentos serão integrados em uma próxima etapa. Esta versão é apenas uma demonstração.');
-}
-
-function filterProducts(category,button) {
-  document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
-  button.classList.add('active');
-
-  document.querySelectorAll('.product').forEach(product=>{
-    product.style.display=
-      category==='todos'||product.dataset.category===category
-      ?'block':'none';
-  });
-}
-</script>
+      if (button) {
+        document.querySelectorAll('.filter-button').forEach(item => {
+          item.classList.remove('active');
+        });
+        button.classList.add('active');
+      } else {
+        document.querySelectorAll('.filter-button').forEach(item => {
+          item.classList.toggle('active', item.textContent.trim().toLowerCase() === category);
+        });
+      }
+    }
+  </script>
 
 </body>
 </html>
