@@ -1,86 +1,64 @@
+/* =========================================================
+   KYVOREN — SCRIPT PRINCIPAL
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
 
-  /* =====================================================
-     ELEMENTOS PRINCIPAIS
-     ===================================================== */
+  /* =======================================================
+     1. INTRODUÇÃO
+     Duração aproximada: 6 segundos
+  ======================================================= */
 
-  const intro = document.getElementById("intro-screen");
-  const skipButton = document.getElementById("skip-intro");
-  const siteShell = document.getElementById("site-shell");
+  const introScreen = document.getElementById("intro-screen");
+  const skipIntroButton = document.getElementById("skip-intro");
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const navigation = document.getElementById("navigation");
-
-  const currentYear = document.getElementById("current-year");
-
-  /* =====================================================
-     ANO AUTOMÁTICO NO RODAPÉ
-     ===================================================== */
-
-  if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-  }
-
-  /* =====================================================
-     INTRODUÇÃO — DURAÇÃO DE 6 SEGUNDOS
-     ===================================================== */
-
-  let introFinished = false;
   let introTimer = null;
-  let introRemovalTimer = null;
+  let introFinished = false;
 
   function finishIntro() {
-    if (introFinished) return;
+    if (!introScreen || introFinished) return;
 
     introFinished = true;
 
     if (introTimer) {
-      window.clearTimeout(introTimer);
+      clearTimeout(introTimer);
     }
 
-    if (intro) {
-      intro.classList.add("intro-hidden");
+    introScreen.style.transition = "opacity 0.6s ease";
+    introScreen.style.opacity = "0";
+    introScreen.style.pointerEvents = "none";
 
-      introRemovalTimer = window.setTimeout(() => {
-        intro.remove();
-      }, 900);
-    }
-
-    if (siteShell) {
-      siteShell.classList.remove("site-locked");
-      siteShell.removeAttribute("inert");
-    }
+    setTimeout(() => {
+      introScreen.remove();
+    }, 650);
   }
 
-  if (intro && siteShell) {
-    siteShell.classList.add("site-locked");
-    siteShell.setAttribute("inert", "");
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (reducedMotion) {
-      finishIntro();
-    } else {
-      introTimer = window.setTimeout(finishIntro, 6000);
-    }
+  if (introScreen) {
+    introTimer = setTimeout(finishIntro, 6000);
   }
 
-  if (skipButton) {
-    skipButton.addEventListener("click", finishIntro);
+  if (skipIntroButton) {
+    skipIntroButton.addEventListener("click", finishIntro);
   }
 
-  /* =====================================================
-     MENU RESPONSIVO
-     ===================================================== */
+
+  /* =======================================================
+     2. MENU MOBILE
+  ======================================================= */
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const navigation = document.getElementById("navigation");
+  const siteHeader = document.querySelector(".site-header");
 
   function openMenu() {
     if (!menuToggle || !navigation) return;
 
+    navigation.classList.add("open");
     menuToggle.classList.add("active");
-    navigation.classList.add("menu-open");
+
+    if (siteHeader) {
+      siteHeader.classList.add("menu-open");
+    }
 
     menuToggle.setAttribute("aria-expanded", "true");
     menuToggle.setAttribute("aria-label", "Fechar menu");
@@ -89,8 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeMenu() {
     if (!menuToggle || !navigation) return;
 
+    navigation.classList.remove("open");
     menuToggle.classList.remove("active");
-    navigation.classList.remove("menu-open");
+
+    if (siteHeader) {
+      siteHeader.classList.remove("menu-open");
+    }
 
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Abrir menu");
@@ -99,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleMenu() {
     if (!navigation) return;
 
-    const isOpen = navigation.classList.contains("menu-open");
+    const isOpen = navigation.classList.contains("open");
 
     if (isOpen) {
       closeMenu();
@@ -112,45 +94,151 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.addEventListener("click", toggleMenu);
   }
 
-  /* Fecha o menu depois de selecionar uma seção. */
-
+  // Fecha o menu depois que um link é selecionado.
   if (navigation) {
     navigation.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
   }
 
-  /* Fecha o menu com a tecla Escape. */
+  // Fecha o menu ao clicar fora dele.
+  document.addEventListener("click", (event) => {
+    if (!navigation || !menuToggle) return;
 
+    const clickedInsideNavigation = navigation.contains(event.target);
+    const clickedToggle = menuToggle.contains(event.target);
+
+    if (!clickedInsideNavigation && !clickedToggle) {
+      closeMenu();
+    }
+  });
+
+  // Fecha o menu com a tecla Escape.
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeMenu();
     }
   });
 
-  /* Fecha o menu quando a tela volta ao tamanho desktop. */
-
+  // Garante que o menu mobile não fique aberto ao ampliar a tela.
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) {
+    if (window.innerWidth > 800) {
       closeMenu();
     }
   });
 
-  /* =====================================================
-     ANIMAÇÕES AO ROLAR A PÁGINA
-     ===================================================== */
+
+  /* =======================================================
+     3. BUSCA E FILTROS DO CATÁLOGO
+  ======================================================= */
+
+  const searchInput = document.getElementById("product-search");
+  const filterButtons = document.querySelectorAll("[data-filter]");
+  const productCards = document.querySelectorAll(
+    "#products-grid .product-card"
+  );
+  const catalogEmpty = document.getElementById("catalog-empty");
+
+  let activeFilter = "all";
+  let searchTerm = "";
+
+  // Remove acentos para permitir buscas como:
+  // "apresentacoes" e "apresentações".
+  function normalizeText(text) {
+    return String(text)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+  }
+
+  function updateCatalog() {
+    let visibleProducts = 0;
+
+    productCards.forEach((card) => {
+      const category = card.dataset.category || "";
+      const cardText = normalizeText(card.textContent);
+
+      const matchesCategory =
+        activeFilter === "all" || category === activeFilter;
+
+      const matchesSearch =
+        searchTerm === "" || cardText.includes(searchTerm);
+
+      const shouldShow = matchesCategory && matchesSearch;
+
+      card.hidden = !shouldShow;
+
+      if (shouldShow) {
+        visibleProducts++;
+      }
+    });
+
+    // Mostra uma mensagem quando nenhum produto corresponde
+    // à busca ou ao filtro escolhido.
+    if (catalogEmpty) {
+      catalogEmpty.hidden = visibleProducts !== 0;
+    }
+  }
+
+  // Campo de pesquisa.
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      searchTerm = normalizeText(searchInput.value);
+      updateCatalog();
+    });
+  }
+
+  // Botões de filtros.
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeFilter = button.dataset.filter || "all";
+
+      filterButtons.forEach((filterButton) => {
+        const isActive = filterButton === button;
+
+        filterButton.classList.toggle("active", isActive);
+        filterButton.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+      });
+
+      updateCatalog();
+    });
+  });
+
+  // Estado inicial do catálogo.
+  updateCatalog();
+
+
+  /* =======================================================
+     4. BOTÕES DE CONSULTA DOS PRODUTOS
+  ======================================================= */
+
+  const productButtons = document.querySelectorAll("[data-product]");
+
+  productButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const productName = button.dataset.product || "produto";
+
+      window.alert(
+        `Você selecionou: ${productName}.\n\n` +
+        "A consulta automática e o checkout ainda não estão disponíveis.\n\n" +
+        "Acesse a seção Contato do site para verificar os canais de atendimento."
+      );
+    });
+  });
+
+
+  /* =======================================================
+     5. ANIMAÇÕES DE APARECIMENTO
+  ======================================================= */
 
   const revealElements = document.querySelectorAll(".reveal");
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  if ("IntersectionObserver" in window) {
 
-  if (reducedMotion || !("IntersectionObserver" in window)) {
-    revealElements.forEach((element) => {
-      element.classList.add("visible");
-    });
-  } else {
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -169,71 +257,132 @@ document.addEventListener("DOMContentLoaded", () => {
     revealElements.forEach((element) => {
       revealObserver.observe(element);
     });
+
+  } else {
+
+    // Alternativa para navegadores sem IntersectionObserver.
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
+
   }
 
-  /* =====================================================
-     DESTAQUE DO LINK DA SEÇÃO ATUAL
-     ===================================================== */
 
-  const sections = document.querySelectorAll(
-    "main section[id]"
+  /* =======================================================
+     6. TRATAMENTO DE IMAGENS QUE NÃO CARREGAM
+  ======================================================= */
+
+  const productImages = document.querySelectorAll(
+    ".product-image img"
   );
 
-  const navLinks = document.querySelectorAll(
-    ".navigation .nav-link"
-  );
+  function showImageFallback(image) {
+    if (image.dataset.fallbackApplied === "true") {
+      return;
+    }
 
-  if ("IntersectionObserver" in window && sections.length) {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+    image.dataset.fallbackApplied = "true";
+    image.style.display = "none";
 
-          const sectionId = entry.target.id;
+    const imageContainer = image.closest(".product-image");
 
-          navLinks.forEach((link) => {
-            const isCurrent =
-              link.getAttribute("href") === `#${sectionId}`;
+    if (!imageContainer) return;
 
-            link.classList.toggle("active", isCurrent);
-          });
-        });
-      },
-      {
-        threshold: 0,
-        rootMargin: "-30% 0px -60% 0px"
-      }
+    imageContainer.classList.add("has-image-error");
+
+    const fallback = document.createElement("div");
+
+    fallback.className = "product-image-fallback";
+    fallback.setAttribute("role", "img");
+    fallback.setAttribute(
+      "aria-label",
+      "Imagem do produto indisponível"
     );
 
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
+    fallback.textContent = "KYVOREN";
+
+    Object.assign(fallback.style, {
+      position: "absolute",
+      inset: "0",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "#C0C0C0",
+      background:
+        "radial-gradient(circle, rgba(192,192,192,0.09), transparent 65%), #111111",
+      fontFamily: "Manrope, sans-serif",
+      fontSize: "15px",
+      fontWeight: "800",
+      letterSpacing: "5px"
     });
+
+    imageContainer.appendChild(fallback);
+
+    const productTag = imageContainer.querySelector(".product-tag");
+
+    if (productTag) {
+      productTag.style.zIndex = "2";
+    }
   }
 
-  /* =====================================================
-     CATÁLOGO — AVISO SOBRE DISPONIBILIDADE
-     ===================================================== */
+  productImages.forEach((image) => {
+    image.addEventListener("error", () => {
+      showImageFallback(image);
+    });
 
-  const productButtons = document.querySelectorAll(
-    ".product-button[data-product]"
-  );
+    // Também trata imagens que já falharam antes da instalação
+    // do evento de erro.
+    if (image.complete && image.naturalWidth === 0) {
+      showImageFallback(image);
+    }
+  });
 
-  productButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const productName = button.dataset.product || "Produto";
 
-      window.alert(
-        `${productName}\n\n` +
-        "Este produto ainda não possui compra automática pelo site.\n\n" +
-        "Entre em contato com a KYVOREN para consultar valores " +
-        "e disponibilidade."
-      );
+  /* =======================================================
+     7. ANO AUTOMÁTICO NO RODAPÉ
+  ======================================================= */
+
+  const currentYear = document.getElementById("current-year");
+
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
+
+
+  /* =======================================================
+     8. NAVEGAÇÃO SUAVE
+  ======================================================= */
+
+  const internalLinks = document.querySelectorAll('a[href^="#"]');
+
+  internalLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+
+      if (!targetId || targetId === "#") return;
+
+      const target = document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      // Atualiza o endereço interno da página sem recarregá-la.
+      if (history.replaceState) {
+        history.replaceState(null, "", targetId);
+      }
     });
   });
 
-  /* =====================================================
-     FAQ — MANTÉM UMA RESPOSTA ABERTA POR VEZ
-     ===================================================== */
+
+  /* =======================================================
+     9. FAQ — FECHAR OUTRAS RESPOSTAS
+  ======================================================= */
 
   const faqItems = document.querySelectorAll(".faq-item");
 
@@ -249,47 +398,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =====================================================
-     PROTEÇÃO VISUAL PARA IMAGENS COM ERRO
-     ===================================================== */
 
-  const images = document.querySelectorAll("img");
+  /* =======================================================
+     10. ESTADO INICIAL
+  ======================================================= */
 
-  images.forEach((image) => {
-    image.addEventListener("error", () => {
-      image.classList.add("image-error");
-      image.setAttribute("data-image-error", "true");
-    });
-  });
+  document.body.classList.add("kyvoren-ready");
 
-  /* =====================================================
-     ROLAGEM SUAVE PARA LINKS INTERNOS
-     ===================================================== */
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-
-      if (!target) return;
-
-      event.preventDefault();
-
-      target.scrollIntoView({
-        behavior: reducedMotion ? "auto" : "smooth",
-        block: "start"
-      });
-
-      closeMenu();
-    });
-  });
-
-  /* =====================================================
-     FINALIZAÇÃO
-     ===================================================== */
-
-  document.documentElement.classList.add("js-ready");
 });
