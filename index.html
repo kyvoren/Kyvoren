@@ -1,12 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090909">
-  <meta name="description" content="KYVOREN — Produtos digitais e serviços criativos com identidade.">
+  <meta name="description" content="KYVOREN — Produtos digitais e serviços criativos com identidade própria.">
   <title>KYVOREN — Digital & Creative</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -15,15 +19,16 @@
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="header">
-    <a class="brand" href="#inicio" aria-label="KYVOREN início">
+    <a class="brand" href="#inicio" aria-label="KYVOREN — início">
       <span class="brand-symbol">K</span>
-      <span>KYVOREN</span>
+      <span class="brand-name">KYVOREN</span>
     </a>
 
     <button class="menu-toggle" id="menu-toggle"
       aria-label="Abrir menu" aria-expanded="false"
       aria-controls="navigation">
-      <span></span><span></span>
+      <span></span>
+      <span></span>
     </button>
 
     <nav class="navigation" id="navigation">
@@ -34,25 +39,26 @@
     </nav>
 
     <a class="header-contact" href="https://beacons.ai/kyvoren"
-       target="_blank" rel="noopener noreferrer">
-      Contato
+      target="_blank" rel="noopener noreferrer">
+      Contato <span>↗</span>
     </a>
   </header>
 
   <main id="conteudo">
 
+    <!-- INÍCIO -->
     <section class="hero" id="inicio">
       <div class="hero-content">
         <span class="eyebrow">DIGITAL EXPERIENCE · KYVOREN</span>
 
         <h1>
-          Sua presença digital.
-          <span>Outra identidade.</span>
+          Ideias com presença.
+          <span>Design com identidade.</span>
         </h1>
 
         <p>
-          Produtos digitais e serviços criativos desenvolvidos
-          para transformar ideias em experiências visuais.
+          Produtos digitais e serviços criativos para transformar
+          projetos em experiências visuais únicas.
         </p>
 
         <div class="hero-actions">
@@ -60,34 +66,29 @@
             Explorar produtos
           </a>
           <a class="button button-outline" href="#servicos">
-            Conhecer serviços
+            Nossos serviços
           </a>
         </div>
 
-        <div class="hero-caption">
+        <div class="hero-bottom">
           <span>DESIGN</span>
           <span>CRIATIVIDADE</span>
           <span>IDENTIDADE</span>
         </div>
       </div>
 
-      <div class="hero-art">
-        <div class="hero-image">
-          <img src="assets/Wallpapers.png.PNG"
-               alt="Coleção de wallpapers KYVOREN">
-        </div>
-        <div class="hero-image-label">
-          <span>KYVOREN COLLECTION</span>
-          <span>01 / 05</span>
-        </div>
-        <span class="hero-watermark">K.</span>
+      <div class="hero-decoration" aria-hidden="true">
+        <div class="hero-monogram">K</div>
+        <div class="hero-decoration-line"></div>
+        <span>KYVOREN — DIGITAL & CREATIVE</span>
       </div>
     </section>
 
-    <section class="intro" id="sobre">
-      <div class="section-index">01 / SOBRE A KYVOREN</div>
+    <!-- SOBRE -->
+    <section class="about-section" id="sobre">
+      <div class="section-kicker">01 / SOBRE A KYVOREN</div>
 
-      <div class="intro-content">
+      <div class="about-content">
         <h2>
           Criatividade com
           <span>identidade própria.</span>
@@ -100,10 +101,14 @@
         </p>
       </div>
 
-      <div class="intro-signature">KYVOREN — DIGITAL & CREATIVE</div>
+      <div class="about-signature">
+        <span>KYVOREN</span>
+        <span>DIGITAL & CREATIVE</span>
+      </div>
     </section>
 
-    <section class="products-section" id="produtos">
+    <!-- PRODUTOS DIGITAIS -->
+    <section class="content-section" id="produtos">
       <div class="section-heading">
         <div>
           <span class="eyebrow">02 / KYVOREN STORE</span>
@@ -118,16 +123,16 @@
         <article class="product-card">
           <div class="product-image">
             <img src="assets/Wallpapers.png.PNG"
-                 alt="Packs de Wallpapers" loading="lazy">
-            <span class="image-number">01</span>
+              alt="Packs de Wallpapers" loading="lazy">
+            <span class="image-index">01</span>
           </div>
-          <div class="product-details">
-            <span class="product-category">PERSONALIZAÇÃO</span>
+          <div class="product-info">
+            <span class="category">PERSONALIZAÇÃO</span>
             <h3>Packs de Wallpapers</h3>
             <p>Wallpapers para dar uma nova identidade aos seus dispositivos.</p>
             <div class="product-footer">
-              <span class="product-price">R$ 5,90</span>
-              <span class="product-type">DIGITAL</span>
+              <strong>R$ 5,90</strong>
+              <span>DIGITAL</span>
             </div>
           </div>
         </article>
@@ -135,16 +140,16 @@
         <article class="product-card">
           <div class="product-image">
             <img src="assets/Social%20Templates.png.PNG"
-                 alt="Templates para Redes Sociais" loading="lazy">
-            <span class="image-number">02</span>
+              alt="Templates para Redes Sociais" loading="lazy">
+            <span class="image-index">02</span>
           </div>
-          <div class="product-details">
-            <span class="product-category">REDES SOCIAIS</span>
+          <div class="product-info">
+            <span class="category">REDES SOCIAIS</span>
             <h3>Templates para Redes Sociais</h3>
-            <p>Modelos visuais para criar publicações com mais praticidade.</p>
+            <p>Modelos visuais para criar publicações com praticidade.</p>
             <div class="product-footer">
-              <span class="product-price">R$ 9,90</span>
-              <span class="product-type">DIGITAL</span>
+              <strong>R$ 9,90</strong>
+              <span>DIGITAL</span>
             </div>
           </div>
         </article>
@@ -152,16 +157,16 @@
         <article class="product-card">
           <div class="product-image">
             <img src="assets/Discord%20Pack.png.PNG"
-                 alt="Packs para Discord" loading="lazy">
-            <span class="image-number">03</span>
+              alt="Packs para Discord" loading="lazy">
+            <span class="image-index">03</span>
           </div>
-          <div class="product-details">
-            <span class="product-category">COMUNIDADES</span>
+          <div class="product-info">
+            <span class="category">COMUNIDADES</span>
             <h3>Packs para Discord</h3>
             <p>Recursos visuais para personalizar seu espaço no Discord.</p>
             <div class="product-footer">
-              <span class="product-price">R$ 7,90</span>
-              <span class="product-type">DIGITAL</span>
+              <strong>R$ 7,90</strong>
+              <span>DIGITAL</span>
             </div>
           </div>
         </article>
@@ -169,16 +174,16 @@
         <article class="product-card">
           <div class="product-image">
             <img src="assets/Streamer%20Pack.png.PNG"
-                 alt="Packs para Streamers" loading="lazy">
-            <span class="image-number">04</span>
+              alt="Packs para Streamers" loading="lazy">
+            <span class="image-index">04</span>
           </div>
-          <div class="product-details">
-            <span class="product-category">STREAMING</span>
+          <div class="product-info">
+            <span class="category">STREAMING</span>
             <h3>Packs para Streamers</h3>
             <p>Elementos digitais para complementar sua identidade nas transmissões.</p>
             <div class="product-footer">
-              <span class="product-price">R$ 14,90</span>
-              <span class="product-type">DIGITAL</span>
+              <strong>R$ 14,90</strong>
+              <span>DIGITAL</span>
             </div>
           </div>
         </article>
@@ -186,33 +191,36 @@
         <article class="product-card">
           <div class="product-image">
             <img src="assets/Apresentac%CC%A7o%CC%83es.png.PNG"
-                 alt="Templates de Apresentações" loading="lazy">
-            <span class="image-number">05</span>
+              alt="Templates de Apresentações" loading="lazy">
+            <span class="image-index">05</span>
           </div>
-          <div class="product-details">
-            <span class="product-category">PRODUTIVIDADE</span>
+          <div class="product-info">
+            <span class="category">PRODUTIVIDADE</span>
             <h3>Templates de Apresentações</h3>
             <p>Modelos para organizar ideias em apresentações visuais.</p>
             <div class="product-footer">
-              <span class="product-price">R$ 9,90</span>
-              <span class="product-type">DIGITAL</span>
+              <strong>R$ 9,90</strong>
+              <span>DIGITAL</span>
             </div>
           </div>
         </article>
 
       </div>
 
-      <p class="catalog-note">
-        Para informações sobre os produtos e formas de aquisição,
-        entre em contato pelo canal oficial da KYVOREN.
-      </p>
-
-      <a class="button button-light" href="https://beacons.ai/kyvoren"
-         target="_blank" rel="noopener noreferrer">
-        Acessar canal oficial
-      </a>
+      <div class="catalog-footer">
+        <p>
+          Para informações sobre os produtos e formas de aquisição,
+          acesse nosso canal oficial.
+        </p>
+        <a class="button button-light"
+          href="https://beacons.ai/kyvoren"
+          target="_blank" rel="noopener noreferrer">
+          Acessar canal oficial ↗
+        </a>
+      </div>
     </section>
 
+    <!-- SERVIÇOS -->
     <section class="services-section" id="servicos">
       <div class="section-heading">
         <div>
@@ -228,9 +236,9 @@
         <article class="service-card">
           <div class="service-image">
             <img src="assets/Edic%CC%A7a%CC%83o%20de%20Vi%CC%81deo.png.PNG"
-                 alt="Edição de vídeos" loading="lazy">
+              alt="Edição de vídeos" loading="lazy">
           </div>
-          <div class="service-details">
+          <div class="service-info">
             <span>01 / SERVIÇO</span>
             <h3>Edição de vídeos</h3>
             <p>Edição e aprimoramento de vídeos para diferentes plataformas.</p>
@@ -241,9 +249,9 @@
         <article class="service-card">
           <div class="service-image">
             <img src="assets/Comunidade%20Discord.png.PNG"
-                 alt="Criação de comunidades Discord" loading="lazy">
+              alt="Criação de comunidades Discord" loading="lazy">
           </div>
-          <div class="service-details">
+          <div class="service-info">
             <span>02 / SERVIÇO</span>
             <h3>Comunidades Discord</h3>
             <p>Criação e organização de espaços para sua comunidade.</p>
@@ -254,9 +262,9 @@
         <article class="service-card">
           <div class="service-image">
             <img src="assets/Design%20e%20Logo.png.PNG"
-                 alt="Design de logos" loading="lazy">
+              alt="Design de logos" loading="lazy">
           </div>
-          <div class="service-details">
+          <div class="service-info">
             <span>03 / SERVIÇO</span>
             <h3>Design de logos</h3>
             <p>Identidades visuais para marcas, projetos e iniciativas.</p>
@@ -267,9 +275,9 @@
         <article class="service-card">
           <div class="service-image">
             <img src="assets/Artes%20para%20redes%20Sociais.png.PNG"
-                 alt="Artes para redes sociais" loading="lazy">
+              alt="Artes para redes sociais" loading="lazy">
           </div>
-          <div class="service-details">
+          <div class="service-info">
             <span>04 / SERVIÇO</span>
             <h3>Artes para redes sociais</h3>
             <p>Peças gráficas para publicações e comunicação digital.</p>
@@ -280,9 +288,9 @@
         <article class="service-card">
           <div class="service-image">
             <img src="assets/Pack%20para%20Streamers.png.PNG"
-                 alt="Packs personalizados para streamers" loading="lazy">
+              alt="Packs personalizados para streamers" loading="lazy">
           </div>
-          <div class="service-details">
+          <div class="service-info">
             <span>05 / SERVIÇO</span>
             <h3>Packs para streamers</h3>
             <p>Conjuntos visuais para complementar suas transmissões.</p>
@@ -292,45 +300,49 @@
 
       </div>
 
-      <div class="services-contact">
+      <div class="service-contact">
         <div>
           <span class="eyebrow">TEM UM PROJETO EM MENTE?</span>
           <h3>Vamos criar algo único.</h3>
-          <p>Entre em contato pelo canal oficial e conte sua ideia.</p>
+          <p>Conte sua ideia pelo canal oficial da KYVOREN.</p>
         </div>
-
-        <a class="button button-light" href="https://beacons.ai/kyvoren"
-           target="_blank" rel="noopener noreferrer">
-          Falar com a KYVOREN
+        <a class="button button-light"
+          href="https://beacons.ai/kyvoren"
+          target="_blank" rel="noopener noreferrer">
+          Falar com a KYVOREN ↗
         </a>
       </div>
     </section>
 
+    <!-- PRODUTOS FÍSICOS -->
     <section class="coming-section">
-      <div>
+      <div class="coming-copy">
         <span class="eyebrow">04 / PRÓXIMAS NOVIDADES</span>
-        <h2>O universo KYVOREN<br><span>vai além do digital.</span></h2>
+        <h2>Novidades estão<br><span>a caminho.</span></h2>
         <p>
-          Estamos preparando novidades para ampliar nossa coleção.
+          Estamos preparando novidades para ampliar o universo KYVOREN.
         </p>
       </div>
 
-      <div class="coming-stamp">
+      <div class="coming-card">
         <span>KYVOREN</span>
         <strong>EM BREVE</strong>
+        <small>PRODUTOS FÍSICOS</small>
       </div>
     </section>
 
+    <!-- CONTATO -->
     <section class="contact-section">
       <span class="eyebrow">05 / CONECTE-SE</span>
-      <h2>Faça parte da<br><span>experiência.</span></h2>
+      <h2>Conheça a<br><span>KYVOREN.</span></h2>
       <p>
-        Acompanhe a KYVOREN, conheça as novidades
-        e entre em contato pelo nosso canal oficial.
+        Acompanhe nossas novidades, conheça nossos produtos
+        e entre em contato pelo canal oficial.
       </p>
-      <a class="button button-light" href="https://beacons.ai/kyvoren"
-         target="_blank" rel="noopener noreferrer">
-        Beacons oficial
+      <a class="button button-light"
+        href="https://beacons.ai/kyvoren"
+        target="_blank" rel="noopener noreferrer">
+        Beacons oficial ↗
       </a>
     </section>
 
@@ -339,15 +351,14 @@
   <footer class="footer">
     <a class="brand" href="#inicio">
       <span class="brand-symbol">K</span>
-      <span>KYVOREN</span>
+      <span class="brand-name">KYVOREN</span>
     </a>
 
-    <span class="footer-note">DIGITAL & CREATIVE</span>
+    <span class="footer-description">DIGITAL & CREATIVE</span>
 
     <span class="copyright">
       © <span id="current-year"></span> KYVOREN
     </span>
   </footer>
-
 </body>
 </html>
