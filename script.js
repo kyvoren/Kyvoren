@@ -14,13 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ANIMAÇÃO DE ABERTURA
   let introFinished = false;
-  let introTimer;
+  let introTimer = null;
+  let removeIntroTimer = null;
 
-  function finishIntro() {
+  function finishIntro(event) {
+    if (event) {
+      event.preventDefault();
+    }
+
     if (introFinished || !intro) return;
 
     introFinished = true;
-    clearTimeout(introTimer);
+
+    if (introTimer) {
+      clearTimeout(introTimer);
+    }
+
+    if (removeIntroTimer) {
+      clearTimeout(removeIntroTimer);
+    }
 
     intro.classList.add("intro-hidden");
 
@@ -29,8 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
       siteShell.removeAttribute("inert");
     }
 
-    window.setTimeout(() => {
-      intro.remove();
+    removeIntroTimer = window.setTimeout(() => {
+      if (intro && intro.parentNode) {
+        intro.remove();
+      }
     }, 900);
   }
 
@@ -41,12 +55,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       finishIntro();
     } else {
-      introTimer = window.setTimeout(finishIntro, 3400);
+      // Abertura automática após aproximadamente 6 segundos
+      introTimer = window.setTimeout(finishIntro, 6000);
     }
   }
 
+  // BOTÃO PULAR — CLIQUE E TOQUE
   if (skipButton) {
     skipButton.addEventListener("click", finishIntro);
+
+    skipButton.addEventListener("touchend", (event) => {
+      finishIntro(event);
+    }, { passive: false });
   }
 
   // MENU PARA CELULAR
@@ -65,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.getAttribute("aria-expanded") === "true";
 
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
+
     menuToggle.setAttribute(
       "aria-label",
       isOpen ? "Abrir menu" : "Fechar menu"
