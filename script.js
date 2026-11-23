@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navigation = document.getElementById("navigation");
   const year = document.getElementById("current-year");
 
-  // Atualiza automaticamente o ano do rodapé.
+  // Atualiza o ano automaticamente.
   if (year) {
     year.textContent = new Date().getFullYear();
   }
@@ -31,16 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
       navigation.classList.toggle("open", !isOpen);
     });
 
+    // Fecha o menu depois de clicar em uma seção.
     navigation.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
+    // Fecha o menu com Escape.
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
       }
     });
 
+    // Fecha o menu ao voltar para a tela grande.
     window.addEventListener("resize", () => {
       if (window.innerWidth > 620) {
         closeMenu();
@@ -48,10 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Fallback caso alguma imagem não carregue.
+  // Evita deixar espaços vazios se alguma arte não carregar.
   document.querySelectorAll("img").forEach((image) => {
     image.addEventListener("error", () => {
-      image.style.display = "none";
+      image.style.visibility = "hidden";
       image.parentElement.classList.add("image-unavailable");
     });
   });
