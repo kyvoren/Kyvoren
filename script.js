@@ -1,61 +1,103 @@
-"use strict";
-
 document.addEventListener("DOMContentLoaded", () => {
-  const menuButton = document.getElementById("menu-toggle");
-  const navigation = document.getElementById("navigation");
-  const year = document.getElementById("current-year");
+  const intro = document.getElementById("intro-screen");
+  const skipButton = document.getElementById("skip-intro");
+  const siteShell = document.getElementById("site-shell");
 
-  // Atualiza o ano automaticamente.
-  if (year) {
-    year.textContent = new Date().getFullYear();
+  const menuToggle = document.getElementById("menu-toggle");
+  const navigation = document.getElementById("navigation");
+  const currentYear = document.getElementById("current-year");
+
+  // ANO AUTOMÁTICO NO RODAPÉ
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
   }
 
-  // Menu para celular.
-  if (menuButton && navigation) {
-    function closeMenu() {
-      navigation.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.setAttribute("aria-label", "Abrir menu");
+  // ANIMAÇÃO DE ABERTURA
+  let introFinished = false;
+  let introTimer;
+
+  function finishIntro() {
+    if (introFinished || !intro) return;
+
+    introFinished = true;
+    clearTimeout(introTimer);
+
+    intro.classList.add("intro-hidden");
+
+    if (siteShell) {
+      siteShell.classList.remove("site-locked");
+      siteShell.removeAttribute("inert");
     }
 
-    menuButton.addEventListener("click", () => {
-      const isOpen =
-        menuButton.getAttribute("aria-expanded") === "true";
+    window.setTimeout(() => {
+      intro.remove();
+    }, 900);
+  }
 
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Abrir menu" : "Fechar menu"
-      );
+  if (intro && siteShell) {
+    siteShell.classList.add("site-locked");
+    siteShell.setAttribute("inert", "");
 
-      navigation.classList.toggle("open", !isOpen);
-    });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishIntro();
+    } else {
+      introTimer = window.setTimeout(finishIntro, 3400);
+    }
+  }
 
-    // Fecha o menu depois de clicar em uma seção.
+  if (skipButton) {
+    skipButton.addEventListener("click", finishIntro);
+  }
+
+  // MENU PARA CELULAR
+  function closeMenu() {
+    if (!menuToggle || !navigation) return;
+
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    navigation.classList.remove("is-open");
+  }
+
+  function toggleMenu() {
+    if (!menuToggle || !navigation) return;
+
+    const isOpen =
+      menuToggle.getAttribute("aria-expanded") === "true";
+
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Abrir menu" : "Fechar menu"
+    );
+
+    navigation.classList.toggle("is-open", !isOpen);
+  }
+
+  if (menuToggle && navigation) {
+    menuToggle.addEventListener("click", toggleMenu);
+
     navigation.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
-    // Fecha o menu com Escape.
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
       }
     });
 
-    // Fecha o menu ao voltar para a tela grande.
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 620) {
+      if (window.innerWidth > 680) {
         closeMenu();
       }
     });
   }
 
-  // Evita deixar espaços vazios se alguma arte não carregar.
-  document.querySelectorAll("img").forEach((image) => {
-    image.addEventListener("error", () => {
-      image.style.visibility = "hidden";
-      image.parentElement.classList.add("image-unavailable");
+  // TRATAMENTO DE IMAGENS QUE NÃO CARREGAREM
+  document.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("error", () => {
+      img.classList.add("image-error");
+      img.alt = "Imagem indisponível";
     });
   });
 });
