@@ -4,96 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
-  <meta
-    name="description"
-    content="KYVOREN — Produtos digitais, design e soluções criativas com identidade premium."
-  >
-
+  <meta name="description" content="KYVOREN — Produtos digitais, design e soluções criativas com identidade própria.">
   <title>KYVOREN — Além do convencional</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 
 <body>
-
-  <!-- ABERTURA -->
+  <!-- INTRODUÇÃO -->
   <div class="intro-screen" id="intro-screen">
     <div class="intro-content">
-      <img
-        src="assets/Logo%20do%20Site.png.PNG"
-        alt="Logo KYVOREN"
-        class="intro-logo"
-      >
-
-      <div class="intro-line"></div>
-
-      <p class="intro-welcome">
-        OLÁ, SEJA BEM-VINDO À KYVOREN.
-      </p>
-
-      <span class="intro-subtitle">
-        ALÉM DO CONVENCIONAL.
-      </span>
+      <img src="assets/Logo%20do%20Site.png.PNG" alt="Logo KYVOREN" class="intro-logo">
+      <span class="intro-line"></span>
+      <p class="intro-welcome">OLÁ, SEJA BEM-VINDO À KYVOREN.</p>
+      <span class="intro-subtitle">ALÉM DO CONVENCIONAL.</span>
     </div>
-
-    <button class="skip-intro" id="skip-intro" type="button">
-      PULAR INTRODUÇÃO
-    </button>
+    <button class="skip-intro" id="skip-intro" type="button">PULAR INTRODUÇÃO</button>
   </div>
 
-  <!-- SITE -->
   <div class="site-shell" id="site-shell">
-
     <!-- CABEÇALHO -->
     <header class="site-header" id="topo">
       <div class="header-inner">
-
         <a class="brand" href="#inicio" aria-label="KYVOREN — início">
-          <img
-            src="assets/Logo%20do%20Site.png.PNG"
-            alt="KYVOREN"
-            class="brand-logo"
-          >
+          <img src="assets/Logo%20do%20Site.png.PNG" alt="KYVOREN" class="brand-logo">
         </a>
 
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navigation"
-        >
-          <span></span>
-          <span></span>
+        <button class="menu-toggle" id="menu-toggle" type="button"
+          aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation">
+          <span></span><span></span>
         </button>
 
         <nav class="navigation" id="navigation" aria-label="Menu principal">
           <a href="#inicio" class="nav-link active">Início</a>
-          <a href="#sobre" class="nav-link">Sobre</a>
-          <a href="#catalogo" class="nav-link">Catálogo</a>
+          <a href="#produtos-digitais" class="nav-link">Produtos Digitais</a>
+          <a href="#produtos-fisicos" class="nav-link">Produtos Físicos</a>
           <a href="#servicos" class="nav-link">Serviços</a>
-          <a href="#faq" class="nav-link">Dúvidas</a>
+          <a href="#sobre" class="nav-link">Sobre Nós</a>
           <a href="#contato" class="nav-link nav-contact">Contato</a>
         </nav>
 
+        <button class="cart-trigger" id="cart-open" type="button"
+          aria-label="Abrir carrinho de compras" aria-controls="cart-drawer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"/>
+            <circle cx="10" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="cart-label">CARRINHO</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
       </div>
     </header>
 
     <main>
-
       <!-- INÍCIO -->
       <section class="hero section" id="inicio">
-
         <div class="hero-background" aria-hidden="true">
           <div class="hero-orb hero-orb-one"></div>
           <div class="hero-orb hero-orb-two"></div>
@@ -101,933 +72,466 @@
         </div>
 
         <div class="hero-content reveal">
-
-          <span class="eyebrow">
-            <span class="status-dot"></span>
-            UM NOVO PADRÃO DE CRIATIVIDADE
-          </span>
-
-          <h1>
-            ALÉM DO<br>
-            <span class="silver-text">CONVENCIONAL.</span>
-          </h1>
-
+          <span class="eyebrow"><span class="status-dot"></span> IDENTIDADE. CRIATIVIDADE. INOVAÇÃO.</span>
+          <h1>ALÉM DO<br><span class="silver-text">CONVENCIONAL.</span></h1>
           <p class="hero-description">
-            Produtos digitais, design e soluções criativas
-            desenvolvidos para transformar ideias em experiências
-            extraordinárias.
+            Um universo de produtos digitais e soluções criativas pensado
+            para quem valoriza identidade, cuidado visual e boas ideias.
+            Conheça a KYVOREN e encontre recursos para seus projetos.
           </p>
-
           <div class="hero-actions">
-            <a href="#catalogo" class="button button-primary">
-              EXPLORAR CATÁLOGO
-            </a>
-
-            <a href="#sobre" class="button button-secondary">
-              CONHECER A KYVOREN
-            </a>
+            <a href="#produtos-digitais" class="button button-primary">EXPLORAR PRODUTOS</a>
+            <a href="#sobre" class="button button-secondary">CONHECER A MARCA</a>
           </div>
-
           <div class="hero-note">
             <span class="hero-note-line"></span>
-            <span>ESTÉTICA. IDENTIDADE. INOVAÇÃO.</span>
+            <span>UMA IDEIA, MUITAS POSSIBILIDADES.</span>
           </div>
-
         </div>
 
-        <div class="hero-visual reveal" aria-label="Identidade visual KYVOREN">
+        <div class="hero-visual reveal">
           <div class="hero-visual-frame">
-
-            <img
-              src="assets/Logo%20do%20Site.png.PNG"
-              alt="Símbolo oficial da KYVOREN"
-              class="hero-logo"
-            >
-
-            <div class="visual-caption">
-              <span>KYVOREN</span>
-              <span>EST. 2026</span>
-            </div>
-
+            <img src="assets/Logo%20do%20Site.png.PNG" alt="Símbolo oficial da KYVOREN" class="hero-logo">
+            <div class="visual-caption"><span>KYVOREN</span><span>DESDE 2026</span></div>
           </div>
-
           <div class="hero-visual-decoration"></div>
         </div>
 
-        <a href="#sobre" class="scroll-indicator" aria-label="Rolar para conhecer">
-          <span>ROLE PARA DESCOBRIR</span>
-          <span class="scroll-arrow" aria-hidden="true">↓</span>
+        <a href="#universo" class="scroll-indicator">
+          <span>ROLE PARA DESCOBRIR</span><span class="scroll-arrow">↓</span>
         </a>
-
       </section>
 
       <!-- FAIXA DE IDENTIDADE -->
       <div class="ticker" aria-label="Identidade KYVOREN">
         <div class="ticker-track">
-
-          <span>CRIATIVIDADE SEM LIMITES</span>
-          <span class="ticker-symbol">✦</span>
-
-          <span>DESIGN COM PROPÓSITO</span>
-          <span class="ticker-symbol">✦</span>
-
-          <span>ALÉM DO CONVENCIONAL</span>
-          <span class="ticker-symbol">✦</span>
-
-          <span>CRIATIVIDADE SEM LIMITES</span>
-          <span class="ticker-symbol">✦</span>
-
-          <span>DESIGN COM PROPÓSITO</span>
-          <span class="ticker-symbol">✦</span>
-
-          <span>ALÉM DO CONVENCIONAL</span>
-          <span class="ticker-symbol">✦</span>
-
+          <span>CRIATIVIDADE COM IDENTIDADE</span><span class="ticker-symbol">✦</span>
+          <span>DESIGN COM PROPÓSITO</span><span class="ticker-symbol">✦</span>
+          <span>ALÉM DO CONVENCIONAL</span><span class="ticker-symbol">✦</span>
+          <span>CRIATIVIDADE COM IDENTIDADE</span><span class="ticker-symbol">✦</span>
+          <span>DESIGN COM PROPÓSITO</span><span class="ticker-symbol">✦</span>
+          <span>ALÉM DO CONVENCIONAL</span><span class="ticker-symbol">✦</span>
         </div>
       </div>
 
-      <!-- SOBRE -->
-      <section class="about section" id="sobre">
+      <!-- UNIVERSO DA MARCA -->
+      <section class="categories section" id="universo">
         <div class="section-container">
-
           <div class="section-heading reveal">
-            <span class="eyebrow">01 — QUEM SOMOS</span>
-
-            <h2>
-              NÃO É APENAS<br>
-              <span class="silver-text">SOBRE VENDER.</span>
-            </h2>
-          </div>
-
-          <div class="about-layout">
-
-            <div class="about-main reveal">
-
-              <p class="about-highlight">
-                É sobre criar algo que tenha identidade,
-                propósito e personalidade.
-              </p>
-
-              <p>
-                A KYVOREN nasce da união entre criatividade,
-                tecnologia e atenção aos detalhes. Nosso objetivo
-                é oferecer produtos e soluções que ajudem pessoas
-                e projetos a expressarem seu potencial.
-              </p>
-
-              <p>
-                Cada detalhe importa. Da apresentação à experiência,
-                buscamos construir uma marca reconhecível, moderna
-                e comprometida com a qualidade.
-              </p>
-
-              <a href="#catalogo" class="text-link">
-                DESCUBRA NOSSO UNIVERSO
-              </a>
-
-            </div>
-
-            <div class="about-side reveal">
-
-              <div class="about-card">
-                <span class="about-card-number">01</span>
-                <h3>IDENTIDADE</h3>
-                <p>
-                  Uma marca com personalidade própria e atenção aos detalhes.
-                </p>
-              </div>
-
-              <div class="about-card">
-                <span class="about-card-number">02</span>
-                <h3>CRIATIVIDADE</h3>
-                <p>
-                  Ideias transformadas em experiências visuais e digitais.
-                </p>
-              </div>
-
-              <div class="about-card">
-                <span class="about-card-number">03</span>
-                <h3>EVOLUÇÃO</h3>
-                <p>
-                  Uma busca constante por novas possibilidades e soluções.
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- CATEGORIAS -->
-      <section class="categories section" id="categorias">
-        <div class="section-container">
-
-          <div class="section-heading reveal">
-            <span class="eyebrow">02 — NOSSO UNIVERSO</span>
-
-            <h2>
-              EXPLORE AS<br>
-              <span class="silver-text">POSSIBILIDADES.</span>
-            </h2>
-
+            <span class="eyebrow">01 — UNIVERSO KYVOREN</span>
+            <h2>TRÊS FORMAS DE<br><span class="silver-text">CRIAR POSSIBILIDADES.</span></h2>
             <p class="section-description">
-              Diferentes soluções, uma mesma essência: qualidade,
-              criatividade e identidade.
+              Produtos digitais, futuras novidades físicas e serviços criativos:
+              diferentes caminhos reunidos por uma mesma atenção aos detalhes.
             </p>
           </div>
 
           <div class="category-grid">
-
-            <a href="#catalogo" class="category-card reveal">
+            <a href="#produtos-digitais" class="category-card reveal">
               <span class="category-number">01 / 03</span>
-
-              <div class="category-icon" aria-hidden="true">◇</div>
-
+              <div class="category-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <rect x="5" y="7" width="38" height="27" rx="3"/>
+                  <path d="M17 41h14M24 34v7M15 17h18M15 23h11"/>
+                  <path d="m32 22 3 3 5-6"/>
+                </svg>
+              </div>
               <h3>PRODUTOS DIGITAIS</h3>
-
-              <p>
-                Recursos, packs, templates e materiais digitais.
-              </p>
-
-              <span class="category-link">EXPLORAR</span>
+              <p>Recursos, packs e materiais digitais para personalização, criação e produtividade.</p>
+              <span class="category-link">EXPLORAR PRODUTOS <b>↗</b></span>
             </a>
 
-            <a href="#catalogo" class="category-card reveal">
+            <a href="#produtos-fisicos" class="category-card reveal">
               <span class="category-number">02 / 03</span>
-
-              <div class="category-icon" aria-hidden="true">▧</div>
-
+              <div class="category-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="m24 5 18 9v20l-18 9-18-9V14l18-9Z"/>
+                  <path d="m6 14 18 10 18-10M24 24v19M15 9.5l18 10"/>
+                </svg>
+              </div>
               <h3>PRODUTOS FÍSICOS</h3>
-
-              <p>
-                Uma nova categoria está sendo preparada para a KYVOREN.
-              </p>
-
-              <span class="category-link">LANÇAMENTO EM BREVE</span>
+              <p>Uma nova frente da marca está em preparação. As novidades serão apresentadas quando estiverem disponíveis.</p>
+              <span class="category-link">CONHECER A NOVIDADE <b>↗</b></span>
             </a>
 
             <a href="#servicos" class="category-card reveal">
               <span class="category-number">03 / 03</span>
-
-              <div class="category-icon" aria-hidden="true">✳</div>
-
+              <div class="category-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <path d="m8 34 2-8L31 5l12 12-21 21-8 2 2-8Z"/>
+                  <path d="m27 9 12 12M10 26l12 12M6 43h36"/>
+                </svg>
+              </div>
               <h3>SERVIÇOS CRIATIVOS</h3>
-
-              <p>
-                Soluções personalizadas para suas ideias e projetos.
-              </p>
-
-              <span class="category-link">EXPLORAR</span>
+              <p>Possibilidades de criação visual e personalização para marcas, projetos e comunidades.</p>
+              <span class="category-link">VER SERVIÇOS <b>↗</b></span>
             </a>
-
           </div>
         </div>
       </section>
 
-      <!-- CATÁLOGO -->
-      <section class="catalog section" id="catalogo">
+      <!-- PRODUTOS DIGITAIS -->
+      <section class="catalog section" id="produtos-digitais">
         <div class="section-container">
-
           <div class="catalog-heading reveal">
-
             <div class="section-heading">
-              <span class="eyebrow">03 — SELEÇÃO KYVOREN</span>
-
-              <h2>
-                NOSSO<br>
-                <span class="silver-text">CATÁLOGO.</span>
-              </h2>
+              <span class="eyebrow">02 — CATÁLOGO DIGITAL</span>
+              <h2>RECURSOS PARA<br><span class="silver-text">SUAS IDEIAS.</span></h2>
             </div>
-
             <p class="section-description">
-              Explore nossa seleção de produtos e encontre
-              recursos para dar vida às suas ideias.
+              Explore as coleções digitais da KYVOREN. Cada item apresenta
+              uma proposta própria; detalhes, formatos, valores e disponibilidade
+              devem ser confirmados antes de qualquer pedido.
             </p>
-
           </div>
 
-          <!-- BUSCA E FILTROS DO CATÁLOGO -->
           <div class="catalog-tools reveal">
-
-            <div class="catalog-search-wrapper">
-              <label class="visually-hidden" for="product-search">
-                Buscar produto
-              </label>
-
-              <input
-                class="catalog-search"
-                id="product-search"
-                type="search"
-                placeholder="Buscar produto pelo nome..."
-                autocomplete="off"
-                aria-label="Buscar produto pelo nome"
-              >
-            </div>
-
-            <div class="catalog-filters" aria-label="Filtrar produtos">
-
-              <button
-                class="filter-button active"
-                type="button"
-                data-filter="all"
-                aria-pressed="true"
-              >
-                TODOS
-              </button>
-
-              <button
-                class="filter-button"
-                type="button"
-                data-filter="digital"
-                aria-pressed="false"
-              >
-                DIGITAIS
-              </button>
-
-              <button
-                class="filter-button"
-                type="button"
-                data-filter="physical"
-                aria-pressed="false"
-              >
-                FÍSICOS
-              </button>
-
-            </div>
+            <label class="catalog-search-wrapper">
+              <span class="visually-hidden">Buscar produto</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"/>
+                <path d="m16 16 5 5"/>
+              </svg>
+              <input class="catalog-search" id="product-search" type="search"
+                placeholder="Buscar no catálogo..." autocomplete="off">
+            </label>
+            <p class="catalog-hint">06 COLEÇÕES DIGITAIS</p>
           </div>
 
-          <!-- PRODUTOS -->
           <div class="product-grid" id="products-grid">
-
-            <!-- PRODUTO 1 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="wallpapers" data-product-name="Wallpapers">
               <div class="product-image">
-                <img
-                  src="assets/Wallpapers.png.PNG"
-                  alt="Coleção de wallpapers"
-                  loading="lazy"
-                >
-
+                <img src="assets/Wallpapers.png.PNG" alt="Coleção de wallpapers KYVOREN" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
                 <span class="product-category">PERSONALIZAÇÃO</span>
-
                 <h3>WALLPAPERS</h3>
-
-                <p>
-                  Papéis de parede para personalizar seus dispositivos
-                  com estilo e identidade.
-                </p>
-
+                <p>Uma seleção de papéis de parede para personalizar telas e dispositivos com uma identidade visual marcante.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Wallpapers"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
 
-            <!-- PRODUTO 2 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="social-templates" data-product-name="Social Templates">
               <div class="product-image">
-                <img
-                  src="assets/Social Templates.png.PNG"
-                  alt="Templates para redes sociais"
-                  loading="lazy"
-                >
-
+                <img src="assets/Social Templates.png.PNG" alt="Templates para redes sociais" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
                 <span class="product-category">REDES SOCIAIS</span>
-
                 <h3>SOCIAL TEMPLATES</h3>
-
-                <p>
-                  Modelos visuais para criar publicações com
-                  mais organização e personalidade.
-                </p>
-
+                <p>Modelos visuais para organizar a criação de publicações e manter uma comunicação mais consistente nas redes.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Social Templates"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
 
-            <!-- PRODUTO 3 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="discord-pack" data-product-name="Discord Pack">
               <div class="product-image">
-                <img
-                  src="assets/Discord Pack.png.PNG"
-                  alt="Pacote de recursos para Discord"
-                  loading="lazy"
-                >
-
+                <img src="assets/Discord Pack.png.PNG" alt="Pacote de recursos para Discord" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
-                <span class="product-category">COMUNIDADE</span>
-
+                <span class="product-category">COMUNIDADES</span>
                 <h3>DISCORD PACK</h3>
-
-                <p>
-                  Recursos visuais para deixar seu servidor
-                  mais organizado e personalizado.
-                </p>
-
+                <p>Recursos gráficos para ajudar a compor a identidade visual e a apresentação de servidores e comunidades.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Discord Pack"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
 
-            <!-- PRODUTO 4 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="streamer-pack" data-product-name="Streamer Pack">
               <div class="product-image">
-                <img
-                  src="assets/Streamer Pack.png.PNG"
-                  alt="Pacote para streamers"
-                  loading="lazy"
-                >
-
+                <img src="assets/Streamer Pack.png.PNG" alt="Pacote de recursos para streamers" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
                 <span class="product-category">STREAMING</span>
-
                 <h3>STREAMER PACK</h3>
-
-                <p>
-                  Elementos gráficos para construir uma identidade
-                  visual consistente nas transmissões.
-                </p>
-
+                <p>Elementos gráficos para apoiar a construção de uma apresentação visual coerente em canais e transmissões.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Streamer Pack"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
 
-            <!-- PRODUTO 5 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="apresentacoes" data-product-name="Apresentações">
               <div class="product-image">
-                <img
-                  src="assets/apresentações.png.PNG"
-                  alt="Modelos de apresentações"
-                  loading="lazy"
-                >
-
+                <img src="assets/Apresentac%CC%A7o%CC%83es.png.PNG" alt="Materiais de apresentações" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
-                <span class="product-category">PRODUTIVIDADE</span>
-
+                <span class="product-category">APRESENTAÇÃO</span>
                 <h3>APRESENTAÇÕES</h3>
-
-                <p>
-                  Materiais visuais para apresentações mais
-                  organizadas e profissionais.
-                </p>
-
+                <p>Materiais visuais para estruturar ideias, organizar conteúdos e apresentar informações de maneira clara.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Apresentações"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
 
-            <!-- PRODUTO 6 -->
-            <article class="product-card reveal" data-category="digital">
-
+            <article class="product-card reveal" data-category="digital" data-product-id="edicao-video" data-product-name="Edição de Vídeo">
               <div class="product-image">
-                <img
-                  src="assets/edicao-video.png"
-                  alt="Recursos para edição de vídeo"
-                  loading="lazy"
-                >
-
+                <img src="assets/Edic%CC%A7a%CC%83o%20de%20Vi%CC%81deo.png.PNG" alt="Materiais para edição de vídeo" loading="lazy">
                 <span class="product-tag">DIGITAL</span>
               </div>
-
               <div class="product-info">
-
                 <span class="product-category">EDIÇÃO</span>
-
                 <h3>EDIÇÃO DE VÍDEO</h3>
-
-                <p>
-                  Recursos e materiais para apoiar seu processo
-                  criativo de edição.
-                </p>
-
+                <p>Recursos de apoio ao processo de edição, pensados para acompanhar projetos e fluxos de criação audiovisual.</p>
                 <div class="product-bottom">
-                  <span class="product-price">CONSULTE</span>
-
-                  <button
-                    class="product-button"
-                    type="button"
-                    data-product="Edição de Vídeo"
-                  >
-                    CONSULTAR PRODUTO
-                  </button>
+                  <span class="product-price">VALOR SOB CONSULTA</span>
+                  <button class="product-button" type="button" data-add-to-cart>ADICIONAR AO CARRINHO</button>
                 </div>
-
               </div>
             </article>
-
-            <!-- PRODUTO FÍSICO — LANÇAMENTO FUTURO -->
-            <article
-              class="product-card physical-product reveal"
-              data-category="physical"
-            >
-
-              <div class="product-image product-image-placeholder">
-
-                <div class="physical-product-art" aria-hidden="true">
-                  <span class="physical-diamond">◇</span>
-                  <span class="physical-brand">KYVOREN</span>
-                </div>
-
-                <span class="product-tag physical-tag">
-                  FÍSICO
-                </span>
-
-              </div>
-
-              <div class="product-info">
-
-                <span class="product-category">
-                  NOVIDADES KYVOREN
-                </span>
-
-                <h3>COLEÇÃO FÍSICA KYVOREN</h3>
-
-                <p>
-                  Uma nova categoria está sendo preparada.
-                  Em breve, novidades sobre os produtos físicos da marca.
-                </p>
-
-                <div class="product-bottom">
-                  <span class="product-price">
-                    EM BREVE
-                  </span>
-
-                  <span class="physical-status">
-                    LANÇAMENTO EM BREVE
-                  </span>
-                </div>
-
-              </div>
-            </article>
-
           </div>
 
-          <!-- ESTADO SEM RESULTADOS -->
-          <p
-            class="catalog-empty"
-            id="catalog-empty"
-            role="status"
-            aria-live="polite"
-            hidden
-          >
-            Nenhum produto encontrado. Experimente outra busca ou filtro.
+          <p class="catalog-empty" id="catalog-empty" role="status" hidden>
+            Nenhum produto encontrado. Tente outra palavra.
           </p>
-
           <p class="catalog-disclaimer">
-            Produtos, valores e disponibilidade serão confirmados
-            antes da realização de qualquer pedido.
+            Os itens adicionados ao carrinho ficam salvos neste navegador.
+            Preços e disponibilidade serão confirmados antes da compra.
           </p>
+        </div>
+      </section>
 
+      <!-- PRODUTOS FÍSICOS -->
+      <section class="physical-section section" id="produtos-fisicos">
+        <div class="section-container">
+          <div class="physical-panel reveal">
+            <div class="physical-art" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <path d="m60 8 46 24v56l-46 24L14 88V32L60 8Z"/>
+                <path d="m14 32 46 25 46-25M60 57v55M37 20l46 25"/>
+              </svg>
+              <span>KYVOREN</span>
+            </div>
+            <div class="physical-copy">
+              <span class="eyebrow">03 — PRÓXIMA ETAPA</span>
+              <h2>O UNIVERSO KYVOREN<br><span class="silver-text">TAMBÉM GANHA FORMA.</span></h2>
+              <p>
+                Estamos preparando a expansão do catálogo para produtos físicos.
+                Esta área será atualizada quando houver itens, informações e
+                disponibilidade confirmados.
+              </p>
+              <span class="coming-soon">LANÇAMENTO EM PREPARAÇÃO</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- SERVIÇOS -->
       <section class="services section" id="servicos">
         <div class="section-container">
-
           <div class="section-heading reveal">
-            <span class="eyebrow">04 — FEITO PARA SUAS IDEIAS</span>
-
-            <h2>
-              SOLUÇÕES<br>
-              <span class="silver-text">CRIATIVAS.</span>
-            </h2>
-
+            <span class="eyebrow">04 — SERVIÇOS CRIATIVOS</span>
+            <h2>IDEIAS COM<br><span class="silver-text">DIREÇÃO VISUAL.</span></h2>
             <p class="section-description">
-              Sua ideia merece uma apresentação à altura.
-              Conheça algumas das soluções que fazem parte
-              do universo KYVOREN.
+              Projetos diferentes pedem soluções diferentes. Conheça algumas
+              frentes criativas que fazem parte da proposta da KYVOREN.
+              Escopo, prazo e disponibilidade são alinhados em cada consulta.
             </p>
           </div>
 
           <div class="service-list">
-
             <article class="service-item reveal">
-              <div class="service-number">01</div>
-
+              <span class="service-number">01</span>
               <div class="service-content">
                 <h3>DESIGN E IDENTIDADE VISUAL</h3>
-
-                <p>
-                  Criação de elementos visuais para dar personalidade
-                  e consistência à sua marca ou projeto.
-                </p>
+                <p>Criação de elementos gráficos para construir uma apresentação visual coerente com a proposta de uma marca ou projeto.</p>
               </div>
+              <span class="service-mark">↗</span>
             </article>
-
             <article class="service-item reveal">
-              <div class="service-number">02</div>
-
+              <span class="service-number">02</span>
               <div class="service-content">
                 <h3>ARTES PARA REDES SOCIAIS</h3>
-
-                <p>
-                  Peças gráficas para comunicar suas ideias
-                  com clareza e criatividade.
-                </p>
+                <p>Peças visuais para publicações e comunicação digital, considerando o conteúdo e a identidade de cada projeto.</p>
               </div>
+              <span class="service-mark">↗</span>
             </article>
-
             <article class="service-item reveal">
-              <div class="service-number">03</div>
-
+              <span class="service-number">03</span>
               <div class="service-content">
                 <h3>PACKS PARA STREAMERS</h3>
-
-                <p>
-                  Elementos gráficos para compor a identidade
-                  de canais e transmissões.
-                </p>
+                <p>Composição de recursos gráficos para canais, transmissões e ambientes de criação de conteúdo.</p>
               </div>
+              <span class="service-mark">↗</span>
             </article>
-
             <article class="service-item reveal">
-              <div class="service-number">04</div>
-
+              <span class="service-number">04</span>
               <div class="service-content">
-                <h3>COMUNIDADES DISCORD</h3>
-
-                <p>
-                  Organização visual e personalização de espaços
-                  para comunidades digitais.
-                </p>
+                <h3>PERSONALIZAÇÃO DE COMUNIDADES</h3>
+                <p>Organização e personalização visual de espaços digitais, incluindo servidores e comunidades.</p>
               </div>
+              <span class="service-mark">↗</span>
             </article>
+          </div>
+          <a class="button button-secondary service-cta" href="#contato">CONVERSAR SOBRE UM PROJETO</a>
+        </div>
+      </section>
 
+      <!-- SOBRE NÓS -->
+      <section class="about section" id="sobre">
+        <div class="section-container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">05 — SOBRE NÓS</span>
+            <h2>UMA MARCA EM<br><span class="silver-text">CONSTRUÇÃO CONSTANTE.</span></h2>
+          </div>
+
+          <div class="about-layout">
+            <div class="about-main reveal">
+              <p class="about-highlight">
+                A KYVOREN é um projeto construído em torno da criatividade,
+                da identidade e da atenção aos detalhes.
+              </p>
+              <p>
+                Nosso propósito é reunir design, tecnologia e ideias em um
+                espaço onde produtos e soluções criativas possam ganhar forma.
+                Trabalhamos com a proposta de oferecer recursos digitais,
+                materiais visuais e serviços que apoiem projetos pessoais,
+                profissionais e comunidades.
+              </p>
+              <p>
+                Acreditamos que uma boa experiência começa antes mesmo do uso:
+                está na clareza das informações, na organização, na apresentação
+                e no cuidado com cada etapa. Por isso, buscamos desenvolver uma
+                marca reconhecível, consistente e aberta a novas possibilidades.
+              </p>
+              <p>
+                A KYVOREN está em evolução. Cada nova coleção, serviço ou
+                iniciativa deve contribuir para um universo com personalidade
+                própria, sem perder de vista aquilo que orienta a marca:
+                criatividade com identidade.
+              </p>
+            </div>
+
+            <div class="about-side reveal">
+              <div class="about-card"><span class="about-card-number">01</span><h3>IDENTIDADE</h3><p>Uma linguagem visual própria, guiada por consistência e atenção aos detalhes.</p></div>
+              <div class="about-card"><span class="about-card-number">02</span><h3>CRIATIVIDADE</h3><p>Ideias e recursos pensados para diferentes projetos e formas de expressão.</p></div>
+              <div class="about-card"><span class="about-card-number">03</span><h3>EVOLUÇÃO</h3><p>Um catálogo em desenvolvimento e espaço para novas possibilidades.</p></div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- MANIFESTO -->
       <section class="manifesto section">
-
         <div class="manifesto-background" aria-hidden="true"></div>
-
         <div class="manifesto-content reveal">
-
-          <span class="eyebrow">05 — NOSSA ESSÊNCIA</span>
-
-          <h2>
-            O EXTRAORDINÁRIO<br>
-            ESTÁ NOS <span class="silver-text">DETALHES.</span>
-          </h2>
-
-          <p>
-            Não seguimos padrões apenas para fazer parte.
-            Criamos com intenção, evoluímos com propósito
-            e valorizamos cada detalhe.
-          </p>
-
-          <span class="manifesto-signature">KYVOREN®</span>
-
-        </div>
-      </section>
-
-      <!-- COMO FUNCIONA -->
-      <section class="process section" id="como-funciona">
-        <div class="section-container">
-
-          <div class="section-heading reveal">
-            <span class="eyebrow">06 — SIMPLICIDADE EM CADA ETAPA</span>
-
-            <h2>
-              COMO<br>
-              <span class="silver-text">FUNCIONA.</span>
-            </h2>
-          </div>
-
-          <div class="process-grid">
-
-            <div class="process-card reveal">
-              <span class="process-number">01</span>
-              <h3>EXPLORE</h3>
-              <p>
-                Conheça os produtos e serviços disponíveis.
-              </p>
-            </div>
-
-            <div class="process-card reveal">
-              <span class="process-number">02</span>
-              <h3>ESCOLHA</h3>
-              <p>
-                Encontre a solução que combina com sua necessidade.
-              </p>
-            </div>
-
-            <div class="process-card reveal">
-              <span class="process-number">03</span>
-              <h3>CONSULTE</h3>
-              <p>
-                Entre em contato para confirmar valores e disponibilidade.
-              </p>
-            </div>
-
-            <div class="process-card reveal">
-              <span class="process-number">04</span>
-              <h3>REALIZE</h3>
-              <p>
-                Receba as orientações para dar continuidade ao pedido.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="faq section" id="faq">
-        <div class="section-container faq-layout">
-
-          <div class="section-heading reveal">
-
-            <span class="eyebrow">07 — CENTRAL DE AJUDA</span>
-
-            <h2>
-              PERGUNTAS<br>
-              <span class="silver-text">FREQUENTES.</span>
-            </h2>
-
-            <p class="section-description">
-              Algumas respostas para ajudar você a conhecer
-              melhor a KYVOREN.
-            </p>
-
-          </div>
-
-          <div class="faq-list reveal">
-
-            <details class="faq-item">
-              <summary>O que é a KYVOREN?</summary>
-
-              <p>
-                A KYVOREN é uma marca voltada a produtos digitais,
-                soluções criativas e serviços de design.
-              </p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Como posso adquirir um produto?</summary>
-
-              <p>
-                Entre em contato para consultar as informações,
-                os valores e a disponibilidade do produto desejado.
-              </p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Os produtos são digitais?</summary>
-
-              <p>
-                O catálogo pode incluir produtos digitais, físicos
-                e serviços. A modalidade de cada item é informada
-                em sua descrição.
-              </p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Posso solicitar um projeto personalizado?</summary>
-
-              <p>
-                Sim. Você pode entrar em contato para apresentar
-                sua ideia e consultar a possibilidade de um projeto.
-              </p>
-            </details>
-
-            <details class="faq-item">
-              <summary>Como entro em contato com o suporte?</summary>
-
-              <p>
-                Utilize os canais oficiais informados na seção
-                de contato para tirar suas dúvidas.
-              </p>
-            </details>
-
-          </div>
+          <span class="eyebrow">06 — NOSSA ESSÊNCIA</span>
+          <h2>O EXTRAORDINÁRIO<br>ESTÁ NOS <span class="silver-text">DETALHES.</span></h2>
+          <p>Mais do que acompanhar tendências, queremos desenvolver ideias com intenção, identidade e espaço para evoluir.</p>
+          <span class="manifesto-signature">KYVOREN</span>
         </div>
       </section>
 
       <!-- CONTATO -->
       <section class="contact section" id="contato">
         <div class="section-container">
-
           <div class="contact-panel reveal">
-
-            <span class="eyebrow">08 — VAMOS CONVERSAR?</span>
-
-            <h2>
-              SUA PRÓXIMA<br>
-              IDEIA COMEÇA<br>
-              <span class="silver-text">AQUI.</span>
-            </h2>
-
+            <span class="eyebrow">07 — CONTATO</span>
+            <h2>VAMOS DAR O<br>PRÓXIMO PASSO<br><span class="silver-text">JUNTOS?</span></h2>
             <p>
-              Tem alguma dúvida, deseja conhecer nossos produtos
-              ou conversar sobre um projeto? Entre em contato.
+              Quer consultar um produto, conhecer melhor um serviço ou
+              apresentar uma ideia? Entre em contato pelo canal oficial
+                da KYVOREN.
             </p>
-
-            <!-- Substitua este endereço pelo contato oficial antes do lançamento -->
-            <a
-              href="mailto:contato@kyvoren.com"
-              class="button button-primary"
-            >
-              ENTRAR EM CONTATO
-            </a>
-
-            <span class="contact-note">
-              CANAIS OFICIAIS KYVOREN
-            </span>
-
+            <div class="contact-placeholder">
+              <span class="contact-indicator"></span>
+              <span>CANAL DE ATENDIMENTO OFICIAL A SER CONFIGURADO</span>
+            </div>
+            <p class="contact-note">
+              Os dados de contato serão publicados aqui quando o canal oficial
+              estiver definido. Nenhum endereço de e-mail foi presumido.
+            </p>
           </div>
         </div>
       </section>
-
     </main>
 
     <!-- RODAPÉ -->
     <footer class="site-footer">
       <div class="section-container">
-
         <div class="footer-main">
-
           <div class="footer-brand">
-
             <a href="#inicio" aria-label="Voltar ao início">
-              <img
-                src="assets/Logo%20do%20Site.png.PNG"
-                alt="KYVOREN"
-                class="footer-logo"
-                loading="lazy"
-              >
+              <img src="assets/Logo%20do%20Site.png.PNG" alt="KYVOREN" class="footer-logo" loading="lazy">
             </a>
-
-            <p>
-              Além do convencional.<br>
-              Criatividade com identidade.
-            </p>
-
+            <p>Além do convencional.<br>Criatividade com identidade.</p>
           </div>
 
           <div class="footer-column">
-            <h3>NAVEGAÇÃO</h3>
-
+            <h3>EXPLORAR</h3>
             <a href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#catalogo">Catálogo</a>
-            <a href="#servicos">Serviços</a>
-          </div>
-
-          <div class="footer-column">
-            <h3>INFORMAÇÕES</h3>
-
-            <a href="#como-funciona">Como funciona</a>
-            <a href="#faq">Perguntas frequentes</a>
-            <a href="#contato">Contato</a>
+            <a href="#produtos-digitais">Produtos Digitais</a>
+            <a href="#produtos-fisicos">Produtos Físicos</a>
           </div>
 
           <div class="footer-column">
             <h3>KYVOREN</h3>
-
-            <span>Design</span>
-            <span>Produtos digitais</span>
-            <span>Soluções criativas</span>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#contato">Contato</a>
           </div>
 
+          <div class="footer-column">
+            <h3>INFORMAÇÕES</h3>
+            <span>Produtos sob consulta</span>
+            <span>Novidades em preparação</span>
+            <span>Atendimento a configurar</span>
+          </div>
         </div>
 
         <div class="footer-bottom">
-
-          <span>
-            © <span id="current-year">2026</span>
-            KYVOREN. TODOS OS DIREITOS RESERVADOS.
-          </span>
-
+          <span>© <span id="current-year">2026</span> KYVOREN. TODOS OS DIREITOS RESERVADOS.</span>
           <a href="#topo">VOLTAR AO TOPO ↑</a>
-
         </div>
-
       </div>
     </footer>
-
   </div>
 
+  <!-- CARRINHO -->
+  <div class="cart-overlay" id="cart-overlay" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras"
+    aria-hidden="true" inert>
+    <div class="cart-header">
+      <div>
+        <span class="eyebrow">SUA SELEÇÃO</span>
+        <h2>MEU CARRINHO</h2>
+      </div>
+      <button class="cart-close" id="cart-close" type="button" aria-label="Fechar carrinho">×</button>
+    </div>
+
+    <div class="cart-items" id="cart-items" aria-live="polite">
+      <p class="cart-empty">Seu carrinho está vazio. Explore o catálogo e adicione os itens que deseja consultar.</p>
+    </div>
+
+    <div class="cart-summary">
+      <div class="cart-summary-line"><span>Itens selecionados</span><strong id="cart-subtotal-count">0</strong></div>
+      <div class="cart-summary-line cart-total-line"><span>Total</span><strong id="cart-total">A CONFIRMAR</strong></div>
+      <p class="cart-disclaimer">
+        Os preços ainda não estão cadastrados. O carrinho organiza sua seleção,
+        mas não realiza cobranças nem confirma pedidos.
+      </p>
+      <button class="button button-primary checkout-button" id="checkout-button" type="button">
+        CONTINUAR PARA CONSULTA
+      </button>
+      <button class="cart-clear" id="cart-clear" type="button">ESVAZIAR CARRINHO</button>
+    </div>
+  </aside>
+
+  <div class="site-toast" id="site-toast" role="status" aria-live="polite"></div>
 </body>
 </html>
